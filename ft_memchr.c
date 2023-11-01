@@ -19,8 +19,6 @@ void	*ft_memchr(const void *s, int c, size_t n)
 
 	b = c;
 	i = 0;
-	if (s == NULL)
-		return (NULL);
 	while (i < n)
 	{
 		if (*(char *)s == b)
