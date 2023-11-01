@@ -14,14 +14,27 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int		str_len;
 	char	*ptr;
+	size_t	str_len;
+	size_t	i;
 
-	ft_strlen(s[start]);
+	if (!s)
+		return (NULL);
+	str_len = ft_strlen(s);
+	if (start >= str_len)
+		return (ft_strdup(""));
+	str_len -= start;
 	if (len > str_len)
-	ptr = (char *)malloc()
-//malloc in de gröösi vo s strlen
-//jetzte strcpy vo s plus start nach dest
-//dest spenden und nach afrika  versenden
-//glücklich sii dasi s erschte vo part 2 gschafft ha :)
+		len = str_len;
+	ptr = (char *)malloc((str_len + 1) * sizeof(char));
+	if (ptr == NULL)
+		return (NULL);
+	i = 0;
+	while (i < len && s[start + i])
+	{
+		ptr[i] = s[start + i];
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
 }
