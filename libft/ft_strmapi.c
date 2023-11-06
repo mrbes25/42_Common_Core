@@ -1,4 +1,14 @@
-header 42
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bschmid <marvin@42lausanne.ch>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/06 10:49:03 by bschmid           #+#    #+#             */
+/*   Updated: 2023/11/06 10:49:05 by bschmid          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 //it iterates through the string and applyes the function (f)
 //the result of that will be stored and returned in a new string
 
