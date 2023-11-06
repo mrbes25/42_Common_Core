@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-include "libft.h"
+#include "libft.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {
@@ -19,7 +19,7 @@ void	ft_putstr_fd(char *s, int fd)
 	i = 0;
 	while (s[i])
 	{
-		write (fd, &str[i], 1)
+		write (fd, &s[i], 1);
 		i++;
 	}
 }

@@ -10,7 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"libft.h"
+#include "libft.h"
+
+int	ft_nbrlen(int tmp, int len)
+{
+	while (tmp >= 10)
+	{
+		tmp = tmp / 10;
+		len++;
+	}
+	return (len);
+}
 
 char	*ft_itoa(int n)
 {
@@ -20,11 +30,7 @@ char	*ft_itoa(int n)
 
 	tmp = n;
 	len = 1;
-	while (tmp >= 10)
-	{
-		tmp = tmp / 10;
-		len++;
-	}
+	len = ft_nbrlen(tmp, len);
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (str == NULL)
 		return (NULL);
@@ -34,12 +40,11 @@ char	*ft_itoa(int n)
 		str[0] = '-';
 		n = -n;
 	}
-	if (n < 10)
-		ft_str(n, str)
-	if (n >= 10)
+	while (len != 0)
 	{
-		ft_itoa(n / 10);
-		ft_itoa(n % 10)
+		str[len - 1] = ((n % 10) + 48);
+		n = n / 10;
+		len--;
 	}
-	return (*str);
+	return (str);
 }
