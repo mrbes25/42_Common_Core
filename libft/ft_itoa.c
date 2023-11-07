@@ -31,6 +31,8 @@ char	*ft_itoa(int n)
 	tmp = n;
 	len = 1;
 	len = ft_nbrlen(tmp, len);
+	if (n < 0)
+		len++;
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (str == NULL)
 		return (NULL);
@@ -40,7 +42,7 @@ char	*ft_itoa(int n)
 		str[0] = '-';
 		n = -n;
 	}
-	while (len != 0)
+	while (n >= 10)
 	{
 		str[len - 1] = ((n % 10) + 48);
 		n = n / 10;
