@@ -10,10 +10,6 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
-
-CFLAGS = -Wall -Werror -Wextra
-
 SRCS = 			ft_atoi.c \
 				ft_bzero.c \
 				ft_calloc.c \
@@ -49,7 +45,7 @@ SRCS = 			ft_atoi.c \
 				ft_tolower.c \
 				ft_toupper.c \
 
-BONUS =			ft_lstnew.c \
+SRCS_B =		ft_lstnew.c \
 				ft_lstadd_front.c \
 				ft_lstsize.c \
 				ft_lstlast.c \
@@ -59,29 +55,32 @@ BONUS =			ft_lstnew.c \
 				ft_lstiter.c \
 				ft_lstmap.c \
 
+NAME = libft.a
+CFLAGS = -Wall -Werror -Wextra
 OBJS = ${SRCS:.c=.o}
-
+OBJS_B = ${SRCS_B:.c=.o}
 LIBC = ar rcs
-
 CC = cc
 
 RM = rm -f
 
-.c.o:	${SRCS} ${BONUS}
+.c.o:
 		${CC} ${FLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME}: ${OBJS}
 		${LIBC} ${NAME} ${OBJS}
 
-bonus:	${OBJS} ${OBJSBONUS}
-		${LIBC} ${NAME} ${OBJS} ${OBJSBONUS}
+bonus:	${NAME} ${OBJS_B}
+		${LIBC} ${NAME} ${OBJS_B}
 
-all: 	${NAME}
+all: 	${NAME} 
 
 clean:
-		${RM} ${OBJS} ${OBJSBONUS}
+		${RM} ${OBJS} ${OBJS_B}
 
 fclean: clean
-		${RM} ${NAME}
+		${RM} ${NAME} ${bonus}
 
 re: fclean all
+
+.PHONY : all bonus clean fclean re
