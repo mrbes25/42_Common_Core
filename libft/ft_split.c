@@ -11,9 +11,8 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include	<stdlib.h>
 
-size_t	ft_strlen(const char *s)
+/*size_t	ft_strlen(const char *s)
 {
 	int	l;
 
@@ -68,7 +67,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	ptr[i] = '\0';
 	return (ptr);
-}
+}*/
 
 static void	free_str_array(char **strs)
 {
@@ -139,14 +138,14 @@ char	**ft_split(char const *s, char c)
 	if (!strs)
 		return (NULL);
 	fill_strs(s, c, strs);
-	if (!strs[0][0])
+	if (!strs)
 	{
 		free_str_array(strs);
 		return (NULL);
 	}
 	return (strs);
 }
-
+/*
 int	main(void)
 {
 	char	**strs;
@@ -157,6 +156,8 @@ int	main(void)
 	
 	c = ' ';
 	strs = ft_split(str, c);
+	if (!strs)
+		return (0);
 	while (strs[i1])
 	{
 		i2 = 0;
@@ -168,4 +169,4 @@ int	main(void)
 		i1++;
 	}
 	return (0);
-}
+}*/

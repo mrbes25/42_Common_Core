@@ -18,7 +18,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 
 	if (*needle == '\0' || haystack == needle)
 		return ((char *)haystack);
-	while (*haystack && len-- > 0)
+	while (*haystack && len > 0)
 	{
 		i = 0;
 		if (*haystack == *needle)
@@ -30,7 +30,32 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 				i++;
 			}
 		}
+		len--;
 		haystack++;
 	}
 	return (NULL);
 }
+
+/*#include "libft.h"
+#include <stdio.h>
+
+int main()
+{
+    const char *haystack = "aaabc";
+    const char *needle = "a";
+    size_t len = 1;
+
+    char *result = ft_strnstr(haystack, needle, len);
+
+    if (result)
+    {
+        printf("Needle found at position: %ld\n", result - haystack);
+    }
+    else
+    {
+        printf("Needle not found in haystack.\n");
+    }
+
+    return 0;
+}
+*/
