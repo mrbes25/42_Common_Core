@@ -131,7 +131,7 @@ void	fill_strs(char const *s, char c, char **strs, int *error)
 char	**ft_split(char const *s, char c)
 {
 	char	**strs;
-	int		*error;
+	int		error;
 
 	error = 0;
 	if (!s)
