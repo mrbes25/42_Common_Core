@@ -12,41 +12,55 @@
 
 #include "libft.h"
 
-int	ft_nbrlen(int tmp, int len)
+int	ft_nbrlen(int nbr)
 {
-	while (tmp >= 10)
+	int	len;
+
+	len = 0;
+	if (nbr < 0)
+	{		
+		len++;
+		nbr *= -1;
+	}
+	while (nbr > 0)
 	{
-		tmp = tmp / 10;
+		nbr = nbr / 10;
 		len++;
 	}
 	return (len);
 }
 
+void	ft_makestr(int nbr, int len, char *str)
+{
+	str[len] = '\0';
+	if (nbr < 0)
+	{
+		nbr *= -1;
+		str[0] = '-';
+	}
+	while (nbr > 0)
+	{
+		str[len - 1] = ((nbr % 10) + '0');
+		nbr = nbr / 10;
+		len--;
+	}
+}
+
 char	*ft_itoa(int n)
 {
-	int		tmp;
+	int		nbr;
 	int		len;
 	char	*str;
 
-	tmp = n;
-	len = 1;
-	len = ft_nbrlen(tmp, len);
-	if (n < 0)
-		len++;
+	nbr = n;
+	if (nbr == 0)
+		return (ft_strdup("0"));
+	if (nbr == -2147483648)
+		return (ft_strdup("-2147483648"));
+	len = ft_nbrlen(nbr);
 	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (str == NULL)
+	if (!str)
 		return (NULL);
-	str[len] = '\0';
-	if (n < 0)
-	{
-		str[0] = '-';
-		n = -n;
-	}
-	while (n >= 10)
-	{
-		str[len - 1] = ((n % 10) + 48);
-		n = n / 10;
-		len--;
-	}
+	ft_makestr(nbr, len, str);
 	return (str);
 }
