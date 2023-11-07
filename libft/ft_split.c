@@ -103,7 +103,7 @@ static int	count_words(char const *s, char c)
 	return (i2);
 }
 
-void	fill_strs(char const *s, char c, char **strs)
+void	fill_strs(char const *s, char c, char **strs, int *error)
 {
 	int	i1;
 	int	i2;
@@ -111,7 +111,7 @@ void	fill_strs(char const *s, char c, char **strs)
 
 	i1 = 0;
 	i2 = 0;
-	while (s[i1])
+	while (s[i1] && *error == 0)
 	{
 		if (s[i1] != c)
 		{
@@ -120,7 +120,7 @@ void	fill_strs(char const *s, char c, char **strs)
 				i1++;
 			strs[i2++] = ft_substr(s, i3, i1 - i3);
 			if (!strs[i2 - 1])
-				free_str_array(strs);
+				*error = 1;
 		}
 		else
 			i1++;
@@ -131,14 +131,16 @@ void	fill_strs(char const *s, char c, char **strs)
 char	**ft_split(char const *s, char c)
 {
 	char	**strs;
+	int		*error;
 
+	error = 0;
 	if (!s)
 		return (NULL);
 	strs = (char **)malloc((count_words(s, c) + 1) * sizeof(char *));
 	if (!strs)
 		return (NULL);
-	fill_strs(s, c, strs);
-	if (!strs)
+	fill_strs(s, c, strs, &error);
+	if (error)
 	{
 		free_str_array(strs);
 		return (NULL);
