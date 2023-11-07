@@ -49,7 +49,7 @@ SRCS = 			ft_atoi.c \
 				ft_tolower.c \
 				ft_toupper.c \
 
-BONUS_SRCS =	ft_lstnew.c \
+BONUS =			ft_lstnew.c \
 				ft_lstadd_front.c \
 				ft_lstsize.c \
 				ft_lstlast.c \
@@ -67,19 +67,19 @@ CC = cc
 
 RM = rm -f
 
-.c.o:
+.c.o:	${SRCS} ${BONUS}
 		${CC} ${FLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME}: ${OBJS}
 		${LIBC} ${NAME} ${OBJS}
 
-bonus:	${BONUS_SRCS}
-		${LIBC} ${NAME}
+bonus:	${OBJS} ${OBJSBONUS}
+		${LIBC} ${NAME} ${OBJS} ${OBJSBONUS}
 
 all: 	${NAME}
 
 clean:
-		${RM} ${OBJS}
+		${RM} ${OBJS} ${OBJSBONUS}
 
 fclean: clean
 		${RM} ${NAME}
