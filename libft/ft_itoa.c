@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	ft_nbrlen(int nbr)
+static int	ft_nbrlen(int nbr)
 {
 	int	len;
 
@@ -30,7 +30,7 @@ int	ft_nbrlen(int nbr)
 	return (len);
 }
 
-void	ft_makestr(int nbr, int len, char *str)
+static void	ft_makestr(int nbr, int len, char *str)
 {
 	str[len] = '\0';
 	if (nbr < 0)

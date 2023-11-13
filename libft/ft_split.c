@@ -103,7 +103,7 @@ static int	count_words(char const *s, char c)
 	return (i2);
 }
 
-void	fill_strs(char const *s, char c, char **strs, int *error)
+static void	fill_strs(char const *s, char c, char **strs, int *error)
 {
 	int	i1;
 	int	i2;

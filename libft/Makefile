@@ -65,7 +65,7 @@ CC = cc
 RM = rm -f
 
 .c.o:
-		${CC} ${FLAGS} -c $< -o ${<:.c=.o}
+		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME}: ${OBJS}
 		${LIBC} ${NAME} ${OBJS}
