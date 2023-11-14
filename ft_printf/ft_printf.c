@@ -25,14 +25,22 @@ int	ft_printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
-			count += ft_set_type(format + 1, ap);
 			format++;
+			if (ft_strchr("cspdiuxX", *input))
+				count += ft_set_type(format, ap);
+			else if (*format == '%')
+			{
+				ft_put_char('%');
+				count + 1;
+			}
 		}
-		
-		format++;
+	else
+	{
+		ft_putchar(*format);
+		count + 1;
 	}
 	va_end(ap);
-	return count;
+	return (count);
 }
 
 int	main(void)

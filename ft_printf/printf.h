@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 # include <stdarg.h>
-# include <unistd.h>
+# include "./libft/libft.h"
 
 int	ft_set_type(const int *format, va_list ap);
 int	ft_put_char(va_list ap);
