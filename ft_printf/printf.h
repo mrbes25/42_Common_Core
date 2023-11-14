@@ -15,8 +15,8 @@
 # include <stdarg.h>
 # include <unistd.h>
 
-int	ft_set_type(char *format, va_list ap, int count);
+int	ft_set_type(const int *format, va_list ap);
 int	ft_put_char(va_list ap);
-int	ft_printf(const char *format, ...);
+int	ft_printf(const int *format, ...);
 
 #endif

@@ -19,14 +19,25 @@ int	ft_printf(const char *format, ...)
 	va_list ap;
 	int count;
 
-	va_start(ap, format) count = 0;
-	while (*format != '/0')
+	va_start(ap, format);
+	count = 0;
+	while (*format != '\0')
 	{
 		if (*format == '%')
 		{
-			ft_set_type(*format + 1, ap, count)
-			ap++;
+			count += ft_set_type(format + 1, ap);
+			format++;
 		}
-		*format++;
+		format++;
 	}
+	va_end(ap);
+	return count;
+}
+
+int	main(void)
+{
+	char	c;
+
+	c = A;
+	ft_printf(1, "try to repeat the letter %c, c")
 }

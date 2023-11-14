@@ -12,7 +12,7 @@
 
 #include	"printf.h"
 
-int	ft_set_type(char *format, va_list ap, int count)
+int	ft_set_type(const int *format, va_list ap)
 {
 	if (*format != '\0')
 		{
@@ -37,6 +37,5 @@ int	ft_set_type(char *format, va_list ap, int count)
 			else
 				return (0);
 		}
-		else
-			return (0);
+		return (0);
 }
