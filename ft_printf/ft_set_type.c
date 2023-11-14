@@ -16,9 +16,9 @@ int	ft_set_type(char *format, va_list ap, int count)
 {
 	if (*format != '\0')
 		{
-			if (*format == 'c', )
-				ft_put_char(ap, count);
-			else if (*format == 's')
+			if (*format == 'c')
+				ft_put_char(ap);
+			/*else if (*format == 's')
 				ft_put_str(ap, count);
 			else if (*format == 'p')
 				ft_put_mem(ap, count);
@@ -33,7 +33,7 @@ int	ft_set_type(char *format, va_list ap, int count)
 			else if (*format == 'X')
 				ft_put_hex_upper(ap, count);
 			else if (*format == '%')
-				ft_put_char('%', count);
+				ft_put_char('%', count);*/
 			else
 				return (0);
 		}

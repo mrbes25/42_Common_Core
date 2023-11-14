@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_char.c                                      :+:      :+:    :+:   */
+/*   printf.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschmid <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/14 10:42:18 by bschmid           #+#    #+#             */
-/*   Updated: 2023/11/14 10:42:20 by bschmid          ###   ########.fr       */
+/*   Created: 2023/11/14 16:45:49 by bschmid           #+#    #+#             */
+/*   Updated: 2023/11/14 16:45:52 by bschmid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <unistd.h>
+#ifndef LIBFT_H
+# define LIBFT_H
+# include <stdarg.h>
+# include <unistd.h>
 
-int	ft_put_char(va_list ap)
-{
-	char	c;
+int	ft_set_type(char *format, va_list ap, int count);
+int	ft_put_char(va_list ap);
+int	ft_printf(const char *format, ...);
 
-	c = va_arg(ap, int);
-	write (1, &c, 1);
-	return (1);
-}
+#endif
