@@ -15,30 +15,30 @@ SRCS =		ft_set_type.c \
 			ft_put_char.c \
 
 NAME = printf.a
+LIBFTNAME = libft.a
 CFLAGS = -Wall -Werror -Wextra
-OBJS = ${SRCS:.c=.o}
 LIBC = ar rcs
 CC = cc
+LIBFTDIR = ./libft
 
-RM = rm -f
+OBJS = $(SRCS:.c=.o)
 
-.c.o:
-		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+all: $(NAME)
 
-${NAME}: ${OBJS}
-		${LIBC} ${NAME} ${OBJS}
+makelibft:
+	@make -C $(LIBFTDIR)
+	@cp $(LIBFTDIR)/$(LIBFTNAME) .
+	@mv $(LIBFTNAME) $(NAME)
 
-bonus:	${NAME}
-		${LIBC} ${NAME}
-
-all: 	${NAME} 
+$(NAME): makelibft $(OBJS)
+	@ar -r $(NAME) $(OBJS)
 
 clean:
-		${RM} ${OBJS}
-
+	@rm -f $(OBJS)
+	@cd $(LIBFTDIR) && make clean
+	
 fclean: clean
-		${RM} ${NAME} ${bonus}
-
+	@rm -f $(NAME)
+	@cd $(LIBFTDIR) && make fclean
+	
 re: fclean all
-
-.PHONY : all bonus clean fclean re

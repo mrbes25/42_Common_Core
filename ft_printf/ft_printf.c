@@ -28,6 +28,7 @@ int	ft_printf(const char *format, ...)
 			count += ft_set_type(format + 1, ap);
 			format++;
 		}
+		
 		format++;
 	}
 	va_end(ap);
