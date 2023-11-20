@@ -34,13 +34,14 @@ int	ft_printf(const char *format, ...)
 				count + 1;
 			}
 		}
-	else
-	{
-		ft_putchar(*format);
-		count + 1;
-	}
+		else
+		{
+			ft_putchar(*format);
+			count + 1;
+		}
 	va_end(ap);
 	return (count);
+	}
 }
 
 int	main(void)
