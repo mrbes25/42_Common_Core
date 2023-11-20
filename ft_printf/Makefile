@@ -10,7 +10,14 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =		
+SRCS =	ft_printf.c \
+		ft_putchar.c \
+		ft_puthex_lower.c \
+		ft_puthex_upper.c \
+		ft_putnbr.c \
+		ft_putpointer.c \
+		ft_putstr.c \
+		ft_set_type.c \
 
 NAME = printf.a
 LIBFTNAME = libft.a

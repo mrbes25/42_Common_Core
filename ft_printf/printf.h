@@ -15,8 +15,14 @@
 # include <stdarg.h>
 # include "./libft/libft.h"
 
-int	ft_set_type(const int *format, va_list ap);
-int	ft_put_char(va_list ap);
 int	ft_printf(const int *format, ...);
+int	ft_putchar(char c);
+int	ft_puthex(int n);
+int	ft_puthex(int n);
+int	ft_putnbr(int n);
+int	ft_putpointer(void	*pointer);
+int	ft_putstr(char *s);
+int	ft_set_type(const int *format, va_list ap);
+
 
 #endif

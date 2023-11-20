@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_putpointer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschmid <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 10:46:34 by bschmid           #+#    #+#             */
-/*   Updated: 2023/11/06 10:46:39 by bschmid          ###   ########.fr       */
+/*   Created: 2023/11/20 13:47:29 by bschmid           #+#    #+#             */
+/*   Updated: 2023/11/20 13:47:31 by bschmid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include	"printf.h"
 
-int	ft_putchar(char c)
+int	ft_putpointer(void	*pointer)
 {
-	write (1, &c, 1);
-	return (1);
+	int	counter;
+
+	write (1, "0x", 2)
+	counter = ft_puthex_lower(pointer) + 2
+	return (counter);
 }

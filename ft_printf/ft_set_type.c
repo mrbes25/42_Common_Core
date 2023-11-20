@@ -22,18 +22,18 @@ int	ft_set_type(const int *format, va_list ap)
 	else if (*format == 's')
 		count += ft_putstr(ap);
 	/*else if (*format == 'p')
-		ft_put_mem(ap, count);
+		ft_put_mem(ap, count);*/
 	else if (*format == 'd')
-		ft_put_decimal(ap, count);*/
+		count += ft_putnbr(ap);
 	else if (*format == 'i')
-		ft_putnbr(ap);
+		count += ft_putnbr(ap);
 	else if (*format == 'u')
-		ft_put_uns_decimal(ap, count);
-	/*else if (*format == 'x')
-		ft_put_hex_low(ap, count);
+		count += ft_putnbr(ap);
+	else if (*format == 'x')
+		count += ft_puthex_lower(ap);
 	else if (*format == 'X')
-		ft_put_hex_upper(ap, count);
+		count += ft_puthex_upper(ap);
 	else if (*format == '%')
-		ft_put_char('%', count);*/
+		count += ft_putchar('%');
 	return (count);
 }
