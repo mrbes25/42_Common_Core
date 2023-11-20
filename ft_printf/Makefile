@@ -10,9 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =		ft_set_type.c \
-			ft_printf.c \
-			ft_put_char.c \
+SRCS =		
 
 NAME = printf.a
 LIBFTNAME = libft.a
