@@ -1,25 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschmid <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 10:48:06 by bschmid           #+#    #+#             */
-/*   Updated: 2023/11/06 10:48:10 by bschmid          ###   ########.fr       */
+/*   Created: 2023/11/06 10:47:27 by bschmid           #+#    #+#             */
+/*   Updated: 2023/11/06 10:47:34 by bschmid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include	"libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	ft_putnbr(int n)
 {
-	int	i;
+	int	digit;
+	int	count;
 
-	i = 0;
-	while (s[i])
+	count = 0;
+	digit = n;
+	while (digit > 9)
 	{
-		write (fd, &s[i], 1);
-		i++;
+		digit = digit / 10;
+		count++;
 	}
+	if (n == -2147483648)
+		write (1, "-2147483648", 11);
+	else if (n < 0)
+	{
+		write (1, "-", 1);
+		n = -n;
+		ft_putnbr(n);
+	}
+	else
+	{
+		if (n > 9)
+		{
+			ft_putnbr(n / 10);
+			ft_putnbr(n % 10);
+		}
+		else
+		{
+			digit = n + 48;
+			write (1, &digit, 1);
+		}
+	}
+	return (count);
 }

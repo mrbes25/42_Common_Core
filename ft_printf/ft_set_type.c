@@ -18,16 +18,15 @@ int	ft_set_type(const int *format, va_list ap)
 
 	count = 0;
 	if (*format == 'c')
-		count = ft_putchar_fd(ap);
+		count += ft_putchar(ap);
 	else if (*format == 's')
-		ft_putstr_fd(ap, 1);
-		count = ft_strlen(ap)
-	else if (*format == 'p')
+		count += ft_putstr(ap);
+	/*else if (*format == 'p')
 		ft_put_mem(ap, count);
-	/*else if (*format == 'd')
+	else if (*format == 'd')
 		ft_put_decimal(ap, count);*/
 	else if (*format == 'i')
-		ft_putnbr_fd(ap, count);
+		ft_putnbr(ap);
 	else if (*format == 'u')
 		ft_put_uns_decimal(ap, count);
 	/*else if (*format == 'x')
