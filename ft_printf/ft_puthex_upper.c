@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puthex.c                                     :+:      :+:    :+:   */
+/*   ft_puthex_upper.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschmid <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,36 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"libft.h"
+#include	"ft_printf.h"
 
-int	ft_puthex(int n)
+static int	conversion(int n, int digit, int count)
+{
+	if (n > 15)
+	{
+		ft_putnbr(n / 16);
+		ft_putnbr(n % 16);
+	}
+	else
+	{
+		if (n >= 0 && n <= 9)
+			digit = n + 48;
+		else if (n >= 10 && n <= 15)
+			digit = n + 55;
+		write (1, &digit, 1);
+		count++;
+	}
+	return (count);
+}
+
+int	ft_puthex_upper(int n)
 {
 	int	digit;
 	int	count;
 
 	count = 0;
-	digit = n;
-	while (digit > 9)
-	{
-		digit = digit / 10;
-		count++;
-	}
+	digit = 0;
 	if (n == -2147483648)
-		write (1, "-2147483648", 11);
+		write (1, "-0x80000000", 11);
 	else if (n < 0)
 	{
 		write (1, "-", 1);
@@ -33,20 +47,6 @@ int	ft_puthex(int n)
 		ft_putnbr(n);
 	}
 	else
-	{
-		if (n > 15)
-		{
-			ft_putnbr(n / 16)
-			ft_putnbr(n % 16);
-		}
-		else
-		{
-			if(n >= 0 && <= 9)
-				digit = n + 48;
-			else if(n >= 10 && <= 15)
-				digit = n + 55;
-			write (1, &digit, 1);
-		}
-	}
+		count += conversion(n, digit, count);
 	return (count);
 }

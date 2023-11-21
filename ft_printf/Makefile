@@ -18,32 +18,34 @@ SRCS =	ft_printf.c \
 		ft_putpointer.c \
 		ft_putstr.c \
 		ft_set_type.c \
+		main.c \
 
-NAME = printf.a
-LIBFTNAME = libft.a
+NAME = libftprintf.a
 CFLAGS = -Wall -Werror -Wextra
+OBJS = ${SRCS:.c=.o}
 LIBC = ar rcs
 CC = cc
-LIBFTDIR = ./libft
+EXEC = myprintf
 
-OBJS = $(SRCS:.c=.o)
+RM = rm -f
 
-all: $(NAME)
+.c.o:
+		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
-makelibft:
-	@make -C $(LIBFTDIR)
-	@cp $(LIBFTDIR)/$(LIBFTNAME) .
-	@mv $(LIBFTNAME) $(NAME)
+${NAME}: ${OBJS}
+		${LIBC} ${NAME} ${OBJS}
 
-$(NAME): makelibft $(OBJS)
-	@ar -r $(NAME) $(OBJS)
+${EXEC}: ${NAME}
+				${CC} -o ${EXEC} main.o -L. -lftprintf
+
+all: 	${EXEC} 
 
 clean:
-	@rm -f $(OBJS)
-	@cd $(LIBFTDIR) && make clean
-	
+		${RM} ${OBJS}
+
 fclean: clean
-	@rm -f $(NAME)
-	@cd $(LIBFTDIR) && make fclean
-	
+		${RM} ${NAME}
+
 re: fclean all
+
+.PHONY : all clean fclean re

@@ -10,29 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"printf.h"
+#include	"ft_printf.h"
 
-int	ft_set_type(const int *format, va_list ap)
+int	ft_set_type(const char *format, va_list ap)
 {
 	int	count;
 
 	count = 0;
 	if (*format == 'c')
-		count += ft_putchar(ap);
+		count += ft_putchar(va_arg(ap, int));
 	else if (*format == 's')
-		count += ft_putstr(ap);
-	/*else if (*format == 'p')
-		ft_put_mem(ap, count);*/
-	else if (*format == 'd')
-		count += ft_putnbr(ap);
-	else if (*format == 'i')
-		count += ft_putnbr(ap);
-	else if (*format == 'u')
-		count += ft_putnbr(ap);
+		count += ft_putstr(va_arg(ap, char *));
+	else if (*format == 'p')
+		count += ft_putpointer(va_arg(ap, void *));
+	else if (*format == 'd' || *format == 'i' || *format == 'u')
+		count += ft_putnbr(va_arg(ap, int));
 	else if (*format == 'x')
-		count += ft_puthex_lower(ap);
+		count += ft_puthex_lower(va_arg(ap, unsigned int));
 	else if (*format == 'X')
-		count += ft_puthex_upper(ap);
+		count += ft_puthex_upper(va_arg(ap, unsigned int));
 	else if (*format == '%')
 		count += ft_putchar('%');
 	return (count);

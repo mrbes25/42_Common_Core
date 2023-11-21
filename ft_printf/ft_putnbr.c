@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschmid <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"libft.h"
+#include	"ft_printf.h"
+
+static void	conversion(int n, int digit)
+{
+	if (n > 9)
+	{
+		ft_putnbr(n / 10);
+		ft_putnbr(n % 10);
+	}
+	else
+	{
+		digit = n + 48;
+		write (1, &digit, 1);
+	}
+}
 
 int	ft_putnbr(int n)
 {
@@ -33,17 +47,6 @@ int	ft_putnbr(int n)
 		ft_putnbr(n);
 	}
 	else
-	{
-		if (n > 9)
-		{
-			ft_putnbr(n / 10);
-			ft_putnbr(n % 10);
-		}
-		else
-		{
-			digit = n + 48;
-			write (1, &digit, 1);
-		}
-	}
+		conversion(n, digit);
 	return (count);
 }

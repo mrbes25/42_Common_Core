@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"printf.h"
+#include "ft_printf.h"
 
-int	ft_putpointer(void	*pointer)
+int	ft_putpointer(void *p)
 {
 	int	counter;
 
-	write (1, "0x", 2)
-	counter = ft_puthex_lower(pointer) + 2
+	write (1, "0x", 2);
+	counter = ft_puthex_lower((unsigned long int)p) + 2;
 	return (counter);
 }
