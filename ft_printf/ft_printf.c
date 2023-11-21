@@ -13,26 +13,14 @@
 return how many characters it printed*/
 #include "ft_printf.h"
 
-static void	process_format(const char *format, va_list ap, int *count)
+static int	check_format(const char *format)
 {
-	if (*format == '%')
-	{
-		format++;
-		if ((*format == 'c') || (*format == 's') || (*format == 'p')
-			|| (*format == 'd') || (*format == 'i') || (*format == 'u')
-			|| (*format == 'x') || (*format == 'X'))
-			*count += ft_set_type(format, ap);
-		else if (*format == '%')
-		{
-			ft_putchar('%');
-			*count = *count + 1;
-		}
-	}
+	if ((*format == 'c') || (*format == 's') || (*format == 'p')
+		|| (*format == 'd') || (*format == 'i') || (*format == 'u')
+		|| (*format == 'x') || (*format == 'X'))
+		return (1);
 	else
-	{
-		ft_putchar(*format);
-		*count = *count + 1;
-	}
+		return (0);
 }
 
 int	ft_printf(const char *format, ...)
@@ -44,8 +32,18 @@ int	ft_printf(const char *format, ...)
 	va_start(ap, format);
 	while (*format != '\0')
 	{
-		process_format(format, ap, &count);
-		format++;
+		if (*format == '%')
+		{
+			format++;
+			if (check_format(format) == 1)
+				count += ft_set_type(format, ap);
+			format++;
+		}
+		else
+		{
+			count += ft_putchar(*format);
+			format++;
+		}
 	}
 	va_end(ap);
 	return (count);

@@ -23,6 +23,6 @@ int	ft_putnbr(int n);
 int	ft_putpointer(void *p);
 int	ft_putstr(char *s);
 int	ft_set_type(const char *format, va_list ap);
-int main(void);
+int	main(void);
 
 #endif

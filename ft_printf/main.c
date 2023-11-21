@@ -1,13 +1,11 @@
-#include "printf.h"
+#include "ft_printf.h"
 
 int main(void)
 {
-	/*int	counter;
-	char	test;
+	int	counter;
+	double	test;
 
-	test = 'A';
-	counter = ft_printf("Hello can you say %c for me \n", test);
-	ft_printf("The Word Count of the sentence above is: %i", counter);*/
-	ft_printf("Ich Funktionier :) !\n");
+	test = 2676.8;
+	counter = ft_printf("%d\n", test);
 	return (0);
 }
