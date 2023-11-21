@@ -18,7 +18,7 @@ SRCS =	ft_printf.c \
 		ft_putpointer.c \
 		ft_putstr.c \
 		ft_set_type.c \
-		main.c \
+		#main.c \
 
 NAME = libftprintf.a
 CFLAGS = -Wall -Werror -Wextra
@@ -38,7 +38,7 @@ ${NAME}: ${OBJS}
 #${EXEC}: ${NAME}
 #				${CC} -o ${EXEC} main.o -L. -lftprintf
 
-all: 	${NAME}#${EXEC} 
+all: 	${NAME} #${EXEC} 
 
 clean:
 		${RM} ${OBJS}

@@ -18,7 +18,7 @@ int	ft_putpointer(void *p)
 
 	counter = 0;
 	if (p == 0)
-		counter += write(1, "0", 1);
+		return write(1, "0x0", 3);
 	counter += write (1, "0x", 2);
 	counter += ft_puthex_lower((long int)p);
 	return (counter);

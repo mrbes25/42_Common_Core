@@ -12,7 +12,7 @@
 
 #include	"ft_printf.h"
 
-/*int	ft_puthex_lower(long n)
+int	ft_puthex_lower(unsigned long n)
 {
 	int	i;
 	int	count;
@@ -21,20 +21,25 @@
 	i = 0;
 	count = 0;
 	if (n == 0)
-		count += write(1, ("(null)"), 6);
-	if (n < 0)
-	{
-		count += write(1, "-", 1);
-		n = -n;
-	}
+		return write(1, ("0"), 1);
 	while (n > 15)
 	{
 		buffer[i++] = (n % 16);
-		n /+ 16;
+		n /= 16;
 	}
-}*/
+	buffer[i] = n;
+	while (i >= 0)
+	{
+		if (buffer[i] >= 0 && buffer[i] <= 9)
+			count += ft_putchar(buffer[i] + 48);
+		else if (buffer[i] >= 10 && buffer[i] <= 15)
+			count += ft_putchar(buffer[i] + 87);
+		i--;
+	}
+	return (count);
+}
 
-static int	conversion(long n, int digit, int count)
+/*static int	conversion(long n, int digit, int count)
 {
 	if (n > 15)
 	{
@@ -70,4 +75,4 @@ int	ft_puthex_lower(long n)
 	else
 		count += conversion(n, digit, count);
 	return (count);
-}
+}*/
