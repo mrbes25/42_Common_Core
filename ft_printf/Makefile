@@ -18,14 +18,14 @@ SRCS =	ft_printf.c \
 		ft_putpointer.c \
 		ft_putstr.c \
 		ft_set_type.c \
-		main.c \
+		#main.c \
 
 NAME = libftprintf.a
 CFLAGS = -Wall -Werror -Wextra
 OBJS = ${SRCS:.c=.o}
 LIBC = ar rcs
 CC = cc
-EXEC = myprintf
+#EXEC = myprintf
 
 RM = rm -f
 
@@ -35,10 +35,10 @@ RM = rm -f
 ${NAME}: ${OBJS}
 		${LIBC} ${NAME} ${OBJS}
 
-${EXEC}: ${NAME}
-				${CC} -o ${EXEC} main.o -L. -lftprintf
+#${EXEC}: ${NAME}
+#				${CC} -o ${EXEC} main.o -L. -lftprintf
 
-all: 	${EXEC} 
+all: 	${NAME}#${EXEC} 
 
 clean:
 		${RM} ${OBJS}

@@ -12,7 +12,7 @@
 
 #include	"ft_printf.h"
 
-static int	conversion(int n, int digit, int count)
+static int	conversion(long n, int digit, int count)
 {
 	if (n > 15)
 	{
@@ -25,13 +25,12 @@ static int	conversion(int n, int digit, int count)
 			digit = n + 48;
 		else if (n >= 10 && n <= 15)
 			digit = n + 55;
-		write (1, &digit, 1);
-		count++;
+		count += write (1, &digit, 1);
 	}
 	return (count);
 }
 
-int	ft_puthex_upper(int n)
+int	ft_puthex_upper(long n)
 {
 	int	digit;
 	int	count;
@@ -39,10 +38,10 @@ int	ft_puthex_upper(int n)
 	count = 0;
 	digit = 0;
 	if (n == -2147483648)
-		write (1, "-0x80000000", 11);
+		count += write (1, "-0x80000000", 11);
 	else if (n < 0)
 	{
-		write (1, "-", 1);
+		count += write (1, "-", 1);
 		n = -n;
 		ft_putnbr(n);
 	}

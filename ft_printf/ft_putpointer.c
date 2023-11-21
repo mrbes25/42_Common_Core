@@ -12,11 +12,14 @@
 
 #include "ft_printf.h"
 
-int	ft_putpointer(void *p)
+int	ft_putpointer(uintptr_t p)
 {
 	int	counter;
 
-	write (1, "0x", 2);
-	counter = ft_puthex_lower((unsigned long int)p) + 2;
+	counter = 0;
+	if (p == 0)
+		counter += write(1, "0", 1);
+	counter += write (1, "0x", 2);
+	counter += ft_puthex_lower((unsigned long int)p);
 	return (counter);
 }

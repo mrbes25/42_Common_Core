@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+/*#include "ft_printf.h"
 
 int main(void)
 {
@@ -8,4 +8,4 @@ int main(void)
 	test = 2676.8;
 	counter = ft_printf("%d\n", test);
 	return (0);
-}
+}*/

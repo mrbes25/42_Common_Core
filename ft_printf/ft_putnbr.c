@@ -10,43 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"ft_printf.h"
+#include "ft_printf.h"
 
-static void	conversion(int n, int digit)
+int	ft_putnbr(long n)
 {
-	if (n > 9)
-	{
-		ft_putnbr(n / 10);
-		ft_putnbr(n % 10);
-	}
-	else
-	{
-		digit = n + 48;
-		write (1, &digit, 1);
-	}
-}
+	int		i;
+	int		count;
+	char	buffer[64];
 
-int	ft_putnbr(int n)
-{
-	int	digit;
-	int	count;
-
+	i = 0;
 	count = 0;
-	digit = n;
-	while (digit > 9)
+	if (n == 0)
+		count += write(1, "0", 1);
+	if (n < 0)
 	{
-		digit = digit / 10;
-		count++;
-	}
-	if (n == -2147483648)
-		write (1, "-2147483648", 11);
-	else if (n < 0)
-	{
-		write (1, "-", 1);
+		count += write(1, "-", 1);
 		n = -n;
-		ft_putnbr(n);
 	}
-	else
-		conversion(n, digit);
+	while (n > 0)
+	{
+		buffer[i++] = (n % 10) + '0';
+		n /= 10;
+	}
+	while (--i >= 0)
+	{
+		count += ft_putchar(buffer[i]);
+	}
 	return (count);
 }

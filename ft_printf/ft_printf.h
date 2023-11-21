@@ -17,12 +17,12 @@
 
 int	ft_printf(const char *format, ...);
 int	ft_putchar(char c);
-int	ft_puthex_lower(int n);
-int	ft_puthex_upper(int n);
-int	ft_putnbr(int n);
-int	ft_putpointer(void *p);
+int	ft_puthex_lower(long n);
+int	ft_puthex_upper(long n);
+int	ft_putnbr(long n);
+int	ft_putpointer(uintptr_t);
 int	ft_putstr(char *s);
 int	ft_set_type(const char *format, va_list ap);
-int	main(void);
+/*int	main(void);*/
 
 #endif

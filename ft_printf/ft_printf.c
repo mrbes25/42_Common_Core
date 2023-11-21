@@ -17,7 +17,7 @@ static int	check_format(const char *format)
 {
 	if ((*format == 'c') || (*format == 's') || (*format == 'p')
 		|| (*format == 'd') || (*format == 'i') || (*format == 'u')
-		|| (*format == 'x') || (*format == 'X'))
+		|| (*format == 'x') || (*format == 'X' || (*format == '%')))
 		return (1);
 	else
 		return (0);
@@ -36,8 +36,10 @@ int	ft_printf(const char *format, ...)
 		{
 			format++;
 			if (check_format(format) == 1)
+			{
 				count += ft_set_type(format, ap);
-			format++;
+				format++;
+			}
 		}
 		else
 		{

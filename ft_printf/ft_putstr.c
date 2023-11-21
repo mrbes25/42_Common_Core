@@ -17,6 +17,11 @@ int	ft_putstr(char *s)
 	int	i;
 
 	i = 0;
+	if (!s)
+	{
+		i += ft_putstr("(null)");
+		return(i);
+	}
 	while (s[i])
 	{
 		write (1, &s[i], 1);
