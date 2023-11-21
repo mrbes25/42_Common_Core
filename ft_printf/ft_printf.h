@@ -20,9 +20,8 @@ int	ft_putchar(char c);
 int	ft_puthex_lower(unsigned long n);
 int	ft_puthex_upper(unsigned long n);
 int	ft_putnbr(long n);
-int	ft_putpointer(void *);
+int	ft_putpointer(void *struggle);
 int	ft_putstr(char *s);
 int	ft_set_type(const char *format, va_list ap);
-/*int	main(void);*/
 
 #endif

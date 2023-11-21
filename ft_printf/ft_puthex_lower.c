@@ -10,18 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"ft_printf.h"
+#include "ft_printf.h"
 
 int	ft_puthex_lower(unsigned long n)
 {
-	int	i;
-	int	count;
+	int		i;
+	int		count;
 	char	buffer[64];
 
 	i = 0;
 	count = 0;
 	if (n == 0)
-		return write(1, ("0"), 1);
+		return (write(1, ("0"), 1));
 	while (n > 15)
 	{
 		buffer[i++] = (n % 16);
@@ -38,41 +38,3 @@ int	ft_puthex_lower(unsigned long n)
 	}
 	return (count);
 }
-
-/*static int	conversion(long n, int digit, int count)
-{
-	if (n > 15)
-	{
-		ft_puthex_lower(n / 16);
-		ft_puthex_lower(n % 16);
-	}
-	else
-	{
-		if (n >= 0 && n <= 9)
-			digit = n + 48;
-		else if (n >= 10 && n <= 15)
-			digit = n + 87;
-		count += write (1, &digit, 1);
-	}
-	return (count);
-}
-
-int	ft_puthex_lower(long n)
-{
-	int	digit;
-	int	count;
-
-	count = 0;
-	digit = 0;
-	if (n == -2147483648)
-		count += write (1, "-0x80000000", 11);
-	else if (n < 0)
-	{
-		count += write (1, "-", 1);
-		n = -n;
-		ft_putnbr(n);
-	}
-	else
-		count += conversion(n, digit, count);
-	return (count);
-}*/
