@@ -12,12 +12,34 @@
 
 #include	"ft_printf.h"
 
+/*int	ft_puthex_lower(long n)
+{
+	int	i;
+	int	count;
+	char	buffer[64];
+
+	i = 0;
+	count = 0;
+	if (n == 0)
+		count += write(1, ("(null)"), 6);
+	if (n < 0)
+	{
+		count += write(1, "-", 1);
+		n = -n;
+	}
+	while (n > 15)
+	{
+		buffer[i++] = (n % 16);
+		n /+ 16;
+	}
+}*/
+
 static int	conversion(long n, int digit, int count)
 {
 	if (n > 15)
 	{
-		ft_putnbr(n / 16);
-		ft_putnbr(n % 16);
+		ft_puthex_lower(n / 16);
+		ft_puthex_lower(n % 16);
 	}
 	else
 	{

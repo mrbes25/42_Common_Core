@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	ft_putpointer(uintptr_t p)
+int	ft_putpointer(void *p)
 {
 	int	counter;
 
@@ -20,6 +20,6 @@ int	ft_putpointer(uintptr_t p)
 	if (p == 0)
 		counter += write(1, "0", 1);
 	counter += write (1, "0x", 2);
-	counter += ft_puthex_lower((unsigned long int)p);
+	counter += ft_puthex_lower((long int)p);
 	return (counter);
 }

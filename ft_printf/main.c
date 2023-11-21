@@ -1,11 +1,12 @@
-/*#include "ft_printf.h"
+#include "ft_printf.h"
+#include <stdio.h>
 
 int main(void)
 {
 	int	counter;
-	double	test;
+	char	test[5] = "test";
 
-	test = 2676.8;
-	counter = ft_printf("%d\n", test);
+	counter = ft_printf("%p\n", (void *)test);
+	printf("%p\n", (void *)&test);
 	return (0);
-}*/
+}

@@ -22,7 +22,7 @@ int	ft_set_type(const char *format, va_list ap)
 	else if (*format == 's')
 		count += ft_putstr(va_arg(ap, char *));
 	else if (*format == 'p')
-		count += ft_putpointer(va_arg(ap, uintptr_t));
+		count += ft_putpointer(va_arg(ap, void *));
 	else if (*format == 'd' || *format == 'i')
 		count += ft_putnbr(va_arg(ap, int));
 	else if (*format == 'u')
