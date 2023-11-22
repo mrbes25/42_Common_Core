@@ -85,22 +85,22 @@ static void	free_str_array(char **strs)
 static int	count_words(char const *s, char c)
 {
 	int	i1;
-	int	i2;
+	int	count;
 
 	i1 = 0;
-	i2 = 0;
+	count = 0;
 	while (s[i1])
 	{
 		if (s[i1] == c)
 			i1++;
 		else
 		{
-			i2++;
+			count++;
 			while (s[i1] && s[i1] != c)
 				i1++;
 		}
 	}
-	return (i2);
+	return (count);
 }
 
 static void	fill_strs(char const *s, char c, char **strs, int *error)

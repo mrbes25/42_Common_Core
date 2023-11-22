@@ -20,7 +20,7 @@ SRCS =	ft_printf.c \
 		ft_set_type.c \
 
 NAME = libftprintf.a
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra 
 OBJS = ${SRCS:.c=.o}
 LIBC = ar rcs
 CC = cc
