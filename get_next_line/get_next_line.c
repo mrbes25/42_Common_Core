@@ -10,19 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#define BUFFER_SIZE
+
 char *get_next_line(int fd);
 {
 	char	*str;
+	char	*strs[BUFFER_SIZE]; //if this strs is full create another strs with + BUFFER_SIZE and copy everything from this strs over
 	int		i;
+	siye_t	bytes_read;
 	
 	i = 0;
-	str = malloc((1024) * sizeof(char *));
+	bytes_read = 0;
+	str = malloc((BUFFER_SIZE) * sizeof(char *));
 	if (!str)
 		return (NULL);
-	read(fd, str, 1024)
-	while (str[i])
+	bytes_read = read(fd, str, BUFFER_SIZE)
+	
+	while (str[i]) // a the moment no function if strs is to small
 	{
-		write (1, &str[i], 1);
+		if (str[i] == '\n')
+			str[i + 1] == '\0'
 		i++;
 	}
 	return (str);
@@ -36,7 +43,8 @@ char *get_next_line(int fd);
 int	main(void)
 {
 	int		fd;
-	char	*str[1024];
+	char	*str[1024]; // like this its a string array
+	char	path = test.txt;
 
 	fd = open(path, 0_RDONLY);
 	str = get_next_line(fd);
