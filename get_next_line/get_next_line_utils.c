@@ -11,3 +11,77 @@
 /* ************************************************************************** */
 
 
+size_t	ft_strlen(const char *s)
+{
+	int	l;
+
+	l = 0;
+	while (s[l] != '\0')
+		l++;
+	return (l);
+}
+
+char	*ft_strdup(const char *s)
+{
+	int		str_len;
+	char	*d;
+	int		i;
+
+	i = 0;
+	str_len = ft_strlen(s);
+	d = (char *)malloc((str_len + 1) * sizeof(char));
+	if (d == NULL)
+		return (NULL);
+	while (s[i])
+	{
+		d[i] = s[i];
+		i++;
+	}
+	d[i] = '\0';
+	return (d);
+}
+
+int	*ft_strchr(const char *s, int c)
+{
+	char	b;
+	int		i;
+
+	b = c;
+	i = 0;
+	while (*s != '\0')
+	{
+		if (*s == b)
+			return ((char *)s);
+		s++;
+		i++;
+	}
+	if (b == '\0')
+		return (i);
+	return (NULL);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*new_str;
+	int		i;
+	int		b;
+
+	new_str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	i = 0;
+	b = 0;
+	if (!new_str)
+		return (NULL);
+	while (s1[i])
+	{
+		new_str[i] = s1[i];
+		i++;
+	}
+	while (s2[b])
+	{
+		new_str[i] = s2[b];
+		i++;
+		b++;
+	}
+	new_str[i] = '\0';
+	return (new_str);
+}
