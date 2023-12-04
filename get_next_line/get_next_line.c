@@ -12,16 +12,16 @@
 
 #include "get_next_line.h"
 
-
 static char	*ft_read_join(char *str, int fd, char **rest, int last_pos)
 {
 	size_t	byte_count;
 	char	*buffer;
+
 	str = *rest;
 	while (!ft_strchr(buffer, '\n'))
 	{
 		byte_count = read(fd, buffer, BUFFER_SIZE);
-		if(byte_count == 0)
+		if (byte_count == 0)
 			break ;
 		if (byte_count == -1)
 		{
@@ -37,7 +37,7 @@ static char	*ft_read_join(char *str, int fd, char **rest, int last_pos)
 	return (str);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
 	char		*str;
 	static char	*rest;
@@ -51,28 +51,25 @@ char *get_next_line(int fd)
 #include <stdio.h>
 #include <unistd.h>
 
-int main(void)
+int	main(void)
 {
-    int fd = open("test.txt", O_RDONLY); // Replace "test.txt" with your test file name
+	char	*line;
 
-    if (fd == -1)
-    {
-        perror("Error opening file");
-        return 1;
-    }
-
-    char *line;
-
-    // Read lines from the file using get_next_line
-    while ((line = get_next_line(fd)) != NULL)
-    {
-        printf("Line: %s\n", line);
-        free(line); // Assuming you need to free the line after using it
-    }
-
-    // Close the file descriptor
-    close(fd);
-
-    return 0;
+	int fd = open("test.txt", O_RDONLY);
+		// Replace "test.txt" with your test file name
+	if (fd == -1)
+	{
+		perror("Error opening file");
+		return (1);
+	}
+	// Read lines from the file using get_next_line
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		printf("Line: %s\n", line);
+		free(line); // Assuming you need to free the line after using it
+	}
+	// Close the file descriptor
+	close(fd);
+	return (0);
 }
 */
