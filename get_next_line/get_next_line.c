@@ -46,7 +46,7 @@ char *get_next_line(int fd)
 	str = ft_read_join(str, fd, &rest, last_pos);
 	return (0);
 }
-
+/*
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -75,3 +75,4 @@ int main(void)
 
     return 0;
 }
+*/
