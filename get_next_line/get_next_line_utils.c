@@ -42,7 +42,7 @@ char	*ft_strldup(const char *s, int len)
 	return (d);
 }
 
-int	*ft_strchr(const char *s, int c)
+int	ft_strchr(const char *s, int c)
 {
 	char	b;
 	int		i;
@@ -52,12 +52,12 @@ int	*ft_strchr(const char *s, int c)
 	while (*s != '\0')
 	{
 		if (*s == b)
-			return (&i);
+			return (i);
 		s++;
 		i++;
 	}
 	if (b == '\0')
-		return (&i);
+		return (i);
 	return (0);
 }
 

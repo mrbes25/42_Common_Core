@@ -13,10 +13,10 @@
 #include "get_next_line.h"
 
 
-static char	*ft_read_join(char *str, int fd, char **rest, char **last_pos)
+static char	*ft_read_join(char *str, int fd, char **rest, int last_pos)
 {
 	size_t	byte_count;
-	char	buffer[BUFFER_SIZE + 1];
+	char	*buffer;
 	str = *rest;
 	while (!ft_strchr(buffer, '\n'))
 	{
@@ -30,22 +30,21 @@ static char	*ft_read_join(char *str, int fd, char **rest, char **last_pos)
 		}
 		buffer[byte_count + 1] = '\0';
 		buffer = ft_strjoin(str, buffer);
-		*last_pos = ft_strchr(buffer, '\n');
-		*rest = ft_strldup(buffer[last_pos + 1], BUFFER_SIZE)
-		str = ft_strldup(buffer, last_pos + 1)
+		last_pos = ft_strchr(buffer, '\n');
+		*rest = ft_strldup(&buffer[last_pos + 1], BUFFER_SIZE);
+		str = ft_strldup(buffer, last_pos + 1);
 	}
 	return (str);
 }
 
-char *get_next_line(int fd);
+char *get_next_line(int fd)
 {
 	char		*str;
 	static char	*rest;
 	static int	last_pos;
 
-	str = NULL
-
-	str = ft_read_join(str, fd, rest);
+	str = ft_read_join(str, fd, &rest, last_pos);
+	return (0);
 }
 
 #include <fcntl.h>
