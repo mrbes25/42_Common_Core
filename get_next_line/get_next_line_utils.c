@@ -31,8 +31,11 @@ char	*ft_strldup(const char *s, int len)
 	i = 0;
 	str_len = ft_strlen(s);
 	d = (char *)malloc((len + 1) * sizeof(char));
-	if (d == NULL)
+	if (!d)
+	{
+		free (d);
 		return (NULL);
+	}
 	while (i < len)
 	{
 		d[i] = s[i];
@@ -61,7 +64,7 @@ int	ft_strchr(const char *s, int c)
 	return (0);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2) // make statement if s1 is empty
 {
 	char	*new_str;
 	int		i;

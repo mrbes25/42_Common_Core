@@ -11,28 +11,35 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 static char	*ft_read_join(char *str, int fd, char **rest, int last_pos)
 {
-	size_t	byte_count;
-	char	*buffer;
-
-	str = *rest;
+	int		byte_count;
+	char *buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	
+	if (!buffer)
+		return (NULL);
+	str = *rest; // if rest is not there (do checks for wevery little shit)
+	printf("%s/n", str);
 	while (!ft_strchr(buffer, '\n'))
 	{
-		byte_count = read(fd, buffer, BUFFER_SIZE);
+		byte_count = read(fd, buffer, BUFFER_SIZE); //what if there is an invalid pointer
 		if (byte_count == 0)
 			break ;
 		if (byte_count == -1)
 		{
-			free(buffer);
+			free (rest);
 			return (NULL);
 		}
-		buffer[byte_count + 1] = '\0';
+		buffer[byte_count] = '\0';
+		printf("%s/n", buffer);
 		buffer = ft_strjoin(str, buffer);
-		last_pos = ft_strchr(buffer, '\n');
+		last_pos = ft_strchr(buffer, '\n') + 1;
 		*rest = ft_strldup(&buffer[last_pos + 1], BUFFER_SIZE);
 		str = ft_strldup(buffer, last_pos + 1);
+		if (!buffer)
+			free(buffer);
 	}
 	return (str);
 }
@@ -43,10 +50,11 @@ char	*get_next_line(int fd)
 	static char	*rest;
 	static int	last_pos;
 
+	str = 0;
 	str = ft_read_join(str, fd, &rest, last_pos);
 	return (0);
 }
-/*
+
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -54,9 +62,10 @@ char	*get_next_line(int fd)
 int	main(void)
 {
 	char	*line;
+	int		fd;
 
-	int fd = open("test.txt", O_RDONLY);
-		// Replace "test.txt" with your test file name
+	fd = open("test.txt", O_RDONLY);
+	// Replace "test.txt" with your test file name
 	if (fd == -1)
 	{
 		perror("Error opening file");
@@ -72,4 +81,3 @@ int	main(void)
 	close(fd);
 	return (0);
 }
-*/
