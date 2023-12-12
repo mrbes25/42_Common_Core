@@ -13,9 +13,7 @@
 #include "get_next_line.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
-{
-	if (!s1 || !s2)
-		return (NULL);
+{	
 	char	*new_str;
 	int		i;
 	int		b;
@@ -24,7 +22,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	i = 0;
 	b = 0;
 	if (!new_str)
-		return (NULL);
+	return (NULL);
 	while (s1[i])
 	{
 		new_str[i] = s1[i];

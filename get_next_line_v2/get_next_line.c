@@ -12,10 +12,12 @@
 
 #include "get_next_line.h"
 
-static char ft_read_join(char *str, int fd)
+static char	*ft_read_join(int fd)
 {
 	char	*buffer;
+	char	*str;
 	int		bytes;
+	
 
 	bytes = BUFFER_SIZE;
 	while (bytes == BUFFER_SIZE)
@@ -23,38 +25,39 @@ static char ft_read_join(char *str, int fd)
 		buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 		if (!buffer)
 			break ;
-		bytes = read(fd, buffer, BUFFER_SIZE);
-		if (bytes > 0)
-		{
-			buffer[bytes] = '\0';
-			str = *ft_strjoin(str, buffer);
-		}
-		printf("test_1: %s\n", str);
+		if (!str)
+			str = malloc((1) * sizeof(char)); //prevents segfault if it send mt pointer
 		if (!str)
 			break ;
-		free (buffer);
+		bytes = read(fd, buffer, BUFFER_SIZE);
+		buffer[bytes] = '\0';
+		str = ft_strjoin(str, buffer);
+		if (!str)
+			break ;
+		free(buffer);
 	}
 	printf("test_2: %s\n", str);
-	return (*str);
+	return (str);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	static char *str;
+	static char	*str;
 	char		*trim;
 
 	str = NULL;
-	str = ft_read_join(str, fd);
+	str = ft_read_join(fd);
+	
 	return (str);
 }
-int main(void)
+int	main(void)
 {
-	int fd;
+	int	fd;
 
 	fd = open("test.txt", O_RDONLY);
 	if (fd == -1)
-		return 1;
+		return (1);
 	get_next_line(fd);
 	close(fd);
-	return 0;
+	return (0);
 }
