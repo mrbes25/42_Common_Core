@@ -12,6 +12,9 @@
 
 #include "get_next_line.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <stddef.h>
 
 static char	*ft_read_join(char *str, int fd, char **rest, int last_pos)
 {
@@ -24,7 +27,8 @@ static char	*ft_read_join(char *str, int fd, char **rest, int last_pos)
 		return (NULL);
 	str = *rest; // if rest is not there (do checks for wevery little shit)
 	printf("test_1: %s\n", str);
-	while (!ft_strchr(buffer, '\n'))
+	byte_count = read(fd, buffer, BUFFER_SIZE); //what if there is an invalid pointer
+	while (byte_count > 0 && !ft_strchr(buffer, '\n'))
 	{
 		byte_count = read(fd, buffer, BUFFER_SIZE); //what if there is an invalid pointer
 		if (byte_count == 0)
@@ -38,14 +42,18 @@ static char	*ft_read_join(char *str, int fd, char **rest, int last_pos)
 		printf("test_2: %s\n", buffer);
 	    temp = ft_strjoin(str, buffer);
 		if (!temp)
+		{
+			free (buffer);
 			return (NULL);
+		}
     	free(buffer); // free the old buffer
-    	buffer = temp;
-		last_pos = ft_strchr(buffer, '\n') + 1;
+		buffer = temp;
+		printf("test_3: %s\n", buffer);
+		last_pos = ft_strchr(buffer, '\n');
 		*rest = ft_strldup(&buffer[last_pos + 1], BUFFER_SIZE);
 		str = ft_strldup(buffer, last_pos + 1);
-		if (!buffer)
-			free(buffer);
+		printf("test_4: %s\n", buffer);
+
 	}
 	return (str);
 }
