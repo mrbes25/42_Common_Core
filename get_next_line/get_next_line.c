@@ -16,12 +16,14 @@
 static char	*ft_read_join(char *str, int fd, char **rest, int last_pos)
 {
 	int		byte_count;
-	char *buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	char 	*buffer;
+	char 	*temp;
 	
+	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (NULL);
 	str = *rest; // if rest is not there (do checks for wevery little shit)
-	printf("%s/n", str);
+	printf("test_1: %s\n", str);
 	while (!ft_strchr(buffer, '\n'))
 	{
 		byte_count = read(fd, buffer, BUFFER_SIZE); //what if there is an invalid pointer
@@ -29,12 +31,16 @@ static char	*ft_read_join(char *str, int fd, char **rest, int last_pos)
 			break ;
 		if (byte_count == -1)
 		{
-			free (rest);
+			free (*rest);
 			return (NULL);
 		}
 		buffer[byte_count] = '\0';
-		printf("%s/n", buffer);
-		buffer = ft_strjoin(str, buffer);
+		printf("test_2: %s\n", buffer);
+	    temp = ft_strjoin(str, buffer);
+		if (!temp)
+			return (NULL);
+    	free(buffer); // free the old buffer
+    	buffer = temp;
 		last_pos = ft_strchr(buffer, '\n') + 1;
 		*rest = ft_strldup(&buffer[last_pos + 1], BUFFER_SIZE);
 		str = ft_strldup(buffer, last_pos + 1);
@@ -65,7 +71,7 @@ int	main(void)
 	int		fd;
 
 	fd = open("test.txt", O_RDONLY);
-	// Replace "test.txt" with your test file name
+	printf("test_0\n");
 	if (fd == -1)
 	{
 		perror("Error opening file");
