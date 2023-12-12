@@ -48,6 +48,7 @@ char	*ft_strldup(const char *s, int len)
 int	ft_strchr(const char *s, int c)
 {
 	char	b;
+	
 	int		i;
 
 	b = c;
