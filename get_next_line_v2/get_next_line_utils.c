@@ -55,7 +55,7 @@ int	ft_count(char *str)
 	i = 0;
 	if (!str)
 		return (0);
-	while (str && str[i] != '\n')
+	while (str[i] && str[i] != '\n')
 		i++;
 	return (i);
 }
@@ -87,19 +87,16 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (ptr);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *s, char c)
 {
-	char	b;
-
-	b = c;
 	while (*s != '\0')
 	{
-		if (*s == b)
-			return ((char *)s);
+		if (*s == c)
+			return (s);
 		s++;
 	}
-	if (b == '\0')
-		return ((char *)s);
+	if (c == '\0')
+		return (s);
 	return (NULL);
 }
 
