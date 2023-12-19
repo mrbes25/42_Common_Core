@@ -20,6 +20,10 @@ static char	*ft_read_join(int fd, char *str) // make shure it can handle it if t
 	bytes = BUFFER_SIZE; // enters while loop when it gets called again, this could cause the seg fault
 	while (bytes == BUFFER_SIZE || ft_strchr(buffer, '\n') != NULL)
 	{
+		if (!str)
+			str = malloc((2) * sizeof(char));
+		if (!str)
+			break ;
 	//printf("test_7\n");
 		bytes = read(fd, buffer, BUFFER_SIZE);
 				if (bytes == 0)
@@ -49,7 +53,7 @@ char	*get_next_line(int fd)
 	//printf("test_1: %s\n", str); 
 	if (!str)
 		return (NULL);
-	temp_1 = ft_substr(str, 0, ft_count(str) + 1); // fills temp_1 with line
+	temp_1 = ft_substr(str, 0, ft_count(str)); // fills temp_1 with line
 	if (!temp_1)
 		return (NULL);
 	//printf("test_2: %s\n", temp_1);
@@ -66,7 +70,3 @@ char	*get_next_line(int fd)
 		temp_1 = NULL;
 	return (temp_1);
 }
-
-//str should become NULL otherwise the function will be called infinatly
-//line 24 could be the problem
-//or add a function which will null the str if it is empty
