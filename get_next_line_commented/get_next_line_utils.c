@@ -12,15 +12,19 @@
 
 #include "get_next_line.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char const *s2)
 {
 	char	*new_str;
 	int		i;
 	int		b;
 
-	new_str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	i = 0;
 	b = 0;
+	if (!s1)
+		s1 = "";
+	if (!s2)
+		s2 = "";
+	new_str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!new_str)
 		return (NULL);
 	while (s1[i])
@@ -29,11 +33,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		i++;
 	}
 	while (s2[b])
-	{
-		new_str[i] = s2[b];
-		i++;
-		b++;
-	}
+		new_str[i++] = s2[b++];
 	new_str[i] = '\0';
 	return (new_str);
 }
@@ -43,79 +43,57 @@ size_t	ft_strlen(const char *s)
 	int	l;
 
 	l = 0;
-	while (s[l] != '\0')
+	while (s && s[l])
 		l++;
 	return (l);
 }
 
-int	ft_count(char *str)
+char	*ft_strndup(const char *src, size_t n)
 {
-	int	i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i] && str[i] != '\n')
-		i++;
-	return (i);
-}
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*ptr;
-	size_t	str_len;
+	char	*dest;
+	size_t	length;
 	size_t	i;
 
-	if (!s)
-		return (NULL);
-	str_len = ft_strlen(s);
-	if (start >= str_len)
-		return (ft_strdup(""));
-	str_len -= start;
-	if (len > str_len)
-		len = str_len;
-	ptr = (char *)malloc((len + 1) * sizeof(char));
-	if (ptr == NULL)
-		return (NULL);
+	length = ft_strlen(src);
 	i = 0;
-	while (i < len && s[start + i])
+	if (n < length)
+		length = n;
+	dest = (char *)malloc(sizeof(char) * (length + 1));
+	if (dest == NULL)
+		return (NULL);
+	while (i < length)
 	{
-		ptr[i] = s[start + i];
+		dest[i] = src[i];
 		i++;
 	}
-	ptr[i] = '\0';
-	return (ptr);
-}
-
-char	*ft_strchr(char *s, char c)
-{
-	while (*s != '\0')
-	{
-		if (*s == c)
-			return (s);
-		s++;
-	}
-	if (c == '\0')
-		return (s);
-	return (NULL);
+	dest[length] = '\0';
+	return (dest);
 }
 
 char	*ft_strdup(const char *s)
 {
-	int		str_len;
 	char	*d;
 	int		i;
 
 	i = 0;
-	str_len = ft_strlen(s);
-	d = (char *)malloc((str_len + 1) * sizeof(char));
+	d = (char *)malloc((ft_strlen(s) + 1) * sizeof(char));
 	if (d == NULL)
 		return (NULL);
-	while (s[i])
-	{
-		d[i] = s[i];
-		i++;
-	}
+	while (*s)
+		d[i++] = *s++;
 	d[i] = '\0';
 	return (d);
+}
+
+char	*ft_strchr(char *s, int c)
+{
+	if (!s)
+		return (NULL);
+	while (*s != (char)c)
+	{
+		if (*s == '\0')
+			return (NULL);
+		s++;
+	}
+	return ((char *)s);
 }
