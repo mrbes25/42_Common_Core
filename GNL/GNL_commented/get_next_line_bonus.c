@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschmid <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*move_it(char **str)
 {
@@ -18,30 +18,29 @@ static char	*move_it(char **str)
 	char	*newline;
 	char	*placeholder_str;
 
-	if (!*str || !**str) //check for invalid pointer and empty string
+	if (!*str || !**str)
 		return (NULL);
-	newline = ft_strchr(*str, '\n');//set newline to pointer to \n
-	if (newline)//enter if newline is filled
+	newline = ft_strchr(*str, '\n');
+	if (newline)
 	{
-		line = ft_strndup(*str, newline - *str + 1);//create a line up to that point
-		placeholder_str = *str;//needs to be copied to placeholder so it can take new value
-		*str = ft_strdup(newline + 1);//new value to str
+		line = ft_strndup(*str, newline - *str + 1);
+		placeholder_str = *str;
+		*str = ft_strdup(newline + 1);
 		free(placeholder_str);
 	}
 	else
-	{//if no newline is found, duplicate the entire content into line
-		line = ft_strdup(*str);//line is now new dynamically allocated
-		free(*str);//so str can be freed
+	{
+		line = ft_strdup(*str);
+		free(*str);
 		*str = NULL;
 	}
 	return (line);
 }
-//it is importand to allways free the old version after duplicating a string
 
 static char	*ft_read_join(int fd, char *str)
 {
 	char	buffer[BUFFER_SIZE + 1];
-	ssize_t	bytes; //this datatype is designed for this purpos so it is big enough
+	ssize_t	bytes;
 	char	*tmp;
 
 	if (!str)
@@ -68,10 +67,17 @@ static char	*ft_read_join(int fd, char *str)
 
 char	*get_next_line(int fd)
 {
-	static char	*str;
+	static char	*str[OPEN_MAX]; //this is now a static array
+								//OPEN_MAX is a system defined constant
+								//to limit the numbers of fd
+								//each element in the array correponds
+								//with a seperate fd, thats how it can handle multiple
+								//because it is constant it stores the past values
 	char		*line;
 
-	str = ft_read_join(fd, str);
-	line = move_it(&str);
+	if (fd < 0 || fd >= OPEN_MAX)
+		return (NULL);
+	str[fd] = ft_read_join(fd, str[fd]);
+	line = move_it(&str[fd]);
 	return (line);
 }

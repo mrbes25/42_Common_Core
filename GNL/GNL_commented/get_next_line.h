@@ -17,11 +17,12 @@
 #  define BUFFER_SIZE 1000
 # endif
 
-# include <stddef.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdio.h>
+# include <stddef.h> //e.g. size_t
+# include <stdlib.h> //multiple basic 
+# include <fcntl.h> //needed for file control (only for main part)
+# include <unistd.h> //needed for read function
+# include <stdio.h> //Defines types, macros,
+					//and functions for input and output operations
 
 char	*get_next_line(int fd);
 char	*ft_strjoin(char *s1, char const *s2);

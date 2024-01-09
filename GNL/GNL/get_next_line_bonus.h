@@ -17,11 +17,14 @@
 #  define BUFFER_SIZE 1000
 # endif
 
-# include <fcntl.h>
+# ifndef OPEN_MAX
+#  define OPEN_MAX 42
+# endif
+
 # include <stddef.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 
 char	*get_next_line(int fd);
 char	*ft_strjoin(char *s1, char const *s2);

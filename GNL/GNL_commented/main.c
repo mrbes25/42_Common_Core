@@ -47,11 +47,10 @@ cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 main.c get_next_line.c get_next_line_
 int main(void)
 {
 	int fd = open("test.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
-    int i = 10;
-    
+    	char *line;
 	if (fd == -1)
 		perror("error creating");
-	const char *text = "line 1\nline 2\nline 3\nline 4\nline 5\nline 6\nline 7";
+	const char *text = "\nhello";
 	if(write(fd, text, strlen(text)) == -1)
 	{
 		perror("error writing");
@@ -62,13 +61,14 @@ int main(void)
 	fd = open("test.txt", O_RDWR);
 	if (fd == -1)
 		perror("error opening");
-	char *line;
-	while (i > 0)
+	while (1)
 	{
         line = get_next_line(fd);
-		printf("%s", line);
+        printf("%s", line);
+        if (!line)
+            break ;
+		
 		free(line);
-        i--;
 	}
 	close(fd);
 	return (0);
