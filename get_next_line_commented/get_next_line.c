@@ -58,7 +58,7 @@ static char	*ft_read_join(int fd, char *str)
 		}
 		buffer[bytes] = '\0';
 		tmp = ft_strjoin(str, buffer);
-		free(str);
+		free(str); //
 		str = tmp;
 		if (ft_strchr(buffer, '\n'))
 			break ;
