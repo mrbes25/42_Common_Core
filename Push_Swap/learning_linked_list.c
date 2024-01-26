@@ -21,3 +21,11 @@ struct Node* createNode(int value)
     newNode->next = NULL;
     return newNode;
 }
+
+// function to add an item to the list
+void    addItem(struct Node** head, const char* itemName)
+{
+	struct Node* newNode = createNode(itemName);
+	newNode->next = *head;
+	*head = newNode;
+}
