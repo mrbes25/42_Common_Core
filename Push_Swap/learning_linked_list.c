@@ -14,13 +14,29 @@ struct Node
     struct  Node* next;
 }
 
-
 struct Node* createNode(int value)
 {
-    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
-    newNode->data = value;
-    newNode->next = NULL;
-    return newNode;
+    Node *current = head;
+    while (current != NULL && position != 0)
+    {
+        position--;
+    }
+
+    if (position != 0)
+    {
+        printf("Requested position too far into list\n");
+        return NULL;
+    }
+
+    Node *new = malloc(sizeof(Node));
+    if (new == NULL)
+        return NULL;
+
+    new->data = data;
+    new->next = current->next;
+    current->next = new;
+
+    return new;
 }
 
 // function to add an item to the list
@@ -29,5 +45,4 @@ void    addItem(struct Node** head, const char* itemName)
 	struct Node* newNode = createNode(itemName);
 	newNode->next = *head;
 	*head = newNode;
-    
 }
