@@ -14,6 +14,7 @@ struct Node
     struct  Node* next;
 }
 
+
 struct Node* createNode(int value)
 {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
@@ -28,4 +29,5 @@ void    addItem(struct Node** head, const char* itemName)
 	struct Node* newNode = createNode(itemName);
 	newNode->next = *head;
 	*head = newNode;
+    
 }
