@@ -6,11 +6,16 @@ int ise(struct Stack* stack)
 	return (stack == NULL) // conditions inside parentheses are evaluated to either 0 (false) or 1 (true)
 }
 
-// pop dunction removes the top of a stack, frees it and moves it to the top of the other stack
+// pop function removes the top of a stack, frees it
 int pop(struct Stack stack)
 {
 	if (stack->top == NULL)
-		exit
+		exit(ERROR);
+	int data = stack->top->data; // get data of top element
+	struct Node* temp = stack->top; // save top node
+	stack->top = stack->top->next; // move top pointer to next node, now the top pointer points to the 2nd node in the stack
+	if (stack->top != NULL) // 
+		stack->top->prev = ; //
 }
 
 // Define the node structure
