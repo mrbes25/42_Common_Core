@@ -6,6 +6,16 @@ int ise(struct Stack* stack)
 	return (stack == NULL) // conditions inside parentheses are evaluated to either 0 (false) or 1 (true)
 }
 
+//function ro create new node
+struct Node* newNode(int data)
+{
+	struct Node* node = (struct Node*)malloc(sizeof(struct Node)); // allocate memory for a new node
+	node->data = data; // set the data of the new node to the data that is passed to the function
+	node->next = NULL; // set the next pointer of the new node to NULL
+	node->prev = NULL; // set the previous pointer of the new node to NULL
+	return node; // return the new node
+}
+
 // pop function removes the top of a stack, frees it
 int pop(struct Stack* stack)
 {
@@ -95,72 +105,58 @@ void pa(struct Stack* stack_A, struct Stack* stack_B)
 }
 
 // push B to A (pb)
+void pb(struct Stack* stack_A, struct Stack* stack_B)
 {
-	void pb(struct Stack* stack_A, struct Stack* stack_B)
+	if (!ise(stack_A)) // checks so it's not emty befor we push
 	{
-		if (!ise(stack_A)) // checks so it's not emty befor we push
-		{
-			int data = pop(stack_A);
-			push(stack_B, data);
-		}
+		int data = pop(stack_A);
+		push(stack_B, data);
 	}
 }
 
 // rotate A (ra)
+void ra(struct node** head) // moves the top to the bottom in stack A
 {
-	void ra(struct node** head) // moves the top to the bottom in stack A
-	{
-		if (*head == NULL || (*head)->next == NULL) // checks if the stack is empty or has only one element
-			return;
-		*head = (*head)->next; // only moves entrypoint to the next node
-	}
+	if (*head == NULL || (*head)->next == NULL) // checks if the stack is empty or has only one element
+		return;
+	*head = (*head)->next; // only moves entrypoint to the next node
 }
 
 // rotate B (rb)
+void rb(struct node** head) // moves the top to the bottom in stack B
 {
-	void rb(struct node** head) // moves the top to the bottom in stack B
-	{
-		if (*head == NULL || (*head)->next == NULL) // checks if the stack is empty or has only one element
-			return;
-		*head = (*head)->next; // only moves entrypoint to the next node
-	}
+	if (*head == NULL || (*head)->next == NULL) // checks if the stack is empty or has only one element
+		return;
+	*head = (*head)->next; // only moves entrypoint to the next node
 }
 
 // rotate A & B (rr)
+void rr(struct node** head) // moves the top to the bottom in both stacks
 {
-	void rr(struct node** head) // moves the top to the bottom in both stacks
-	{
-		ra(head); // calls the ra function
-		rb(head); // calls the rb function
-	}
+	ra(head); // calls the ra function
+	rb(head); // calls the rb function
 }
 
 // reverse rotate A (rra)
+void rra(struct node** head) // moves the bottom to the top in stack A
 {
-	void rra(struct node** head) // moves the bottom to the top in stack A
-	{
-		if (*head == NULL || (*head)->next == NULL) // checks if the stack is empty or has only one element
-			return;
-		*head = (*head)->prev; // only moves entrypoint to the previous node
-	}
+	if (*head == NULL || (*head)->next == NULL) // checks if the stack is empty or has only one element
+		return;
+	*head = (*head)->prev; // only moves entrypoint to the previous node
 }
 
 // reverse rotate B (rrb)
+void rrb(struct node** head) // moves the bottom to the top in stack B
 {
-	void rrb(struct node** head) // moves the bottom to the top in stack B
-	{
-		if (*head == NULL || (*head)->next == NULL) // checks if the stack is empty or has only one element
-			return;
-		*head = (*head)->prev; // only moves entrypoint to the previous node
-	}
+	if (*head == NULL || (*head)->next == NULL) // checks if the stack is empty or has only one element
+		return;
+	*head = (*head)->prev; // only moves entrypoint to the previous node
 }
 
 // reverse rotate A & B (rrr)
+void rrr(struct node** head) // moves the bottom to the top in both stacks
 {
-	void rrr(struct node** head) // moves the bottom to the top in both stacks
-	{
-		rra(head); // calls the rra function
-		rrb(head); // calls the rrb function
-	}
+	rra(head); // calls the rra function
+	rrb(head); // calls the rrb function
 }
 
