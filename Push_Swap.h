@@ -1,5 +1,5 @@
-#ifndef PS_LIB_H
-#define PS_LIB_H
+#ifndef PUSH_SWAP_H
+#define PUSH_SWAP_H
 
 #include <stdlib.h> // Include necessary headers
 
