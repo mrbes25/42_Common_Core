@@ -1,4 +1,7 @@
 //mock code:
+// first we need to write the comandline argument to the stack a
+// there we check for all the rules (are there any duplicates, are there any non-numeric characters)
+// if this is all good we can start the algorithm
 // makefile programename push_swap
     // seperate algorithm for 3 or less numbers
     // turc algorithm for everything over
@@ -28,3 +31,4 @@ void    check_sorted(t_stack *stack)
     return (1);
 }
 // function to put numbers in stack a
+
