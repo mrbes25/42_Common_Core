@@ -32,3 +32,4 @@ void    check_sorted(t_stack *stack)
 }
 // function to put numbers in stack a
 
+s
