@@ -32,4 +32,28 @@ void    check_sorted(t_stack *stack)
 }
 // function to put numbers in stack a
 
-s
+int main(int argc, char **argv)
+{
+    // check if there are any arguments
+    if (argc < 2)
+    {
+        print_error("Error\n");
+        return (0);
+    }
+    // parse arguments and store them in stack a
+    int *numbers = parse_arguments(argc, argv);
+
+if numbers == NULL
+    print_error("Error\n");
+    return (0);
+
+// determine the number of elements
+int size = get_array_size(numbers);
+// choose the algorithm
+if (size <= 3)
+    algorithm_3(numbers, size);
+else
+    algorithm_turc(numbers, size);
+free (numbers);
+return (0);
+}
