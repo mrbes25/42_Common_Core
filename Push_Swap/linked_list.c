@@ -26,4 +26,3 @@ int pop(struct Stack* stack)
 	free(temp); // free the memory of the popped node
 	return data; // return the data of the popped node
 }
-
