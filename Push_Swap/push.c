@@ -3,11 +3,16 @@ void push(struct Stack* stack, int data)
 {
 	struct Node* newNode = (struct Node*)malloc(sizeof(struct Node)); // allocate memory for a new node
 	newNode->data = data; // set the data of the new node to the data that is passed to the function
-	newNode->next = stack->top; // set the next pointer of the new node to the top of the stack
-	newNode->prev = NULL; // set the previous pointer of the new node to NULL
-	if (stack->top != NULL) // if the stack is not empty
-		stack->top->prev = newNode; // set the previous pointer of the old top node to the new node
-	stack->top = newNode; // set the top of the stack to the new node
+	if (stack->top == NULL)
+		stack->top = newNode;
+	else
+	{
+		newNode->next = stack->top; // new node next points to current top
+		newNode->prev = stack->top->prev;; // new node prev points to previous top
+		stack->top->prev->next = newNode; // previous top next points to new node 
+		stack->top->prev = newNode; // current top prev points to new node
+		stack->top = newNode; // update top to new node
+	}
 }
 
 // push B to A (pa)
