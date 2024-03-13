@@ -15,3 +15,14 @@ long find_max(Stack *stack) //Function to find biggest node in stack and return 
 	}
 	return (max);
 }
+
+Node	fill_stack(char **a, struct Stack *stack)
+{
+	int	i;
+	i = 1;
+	while (a[i])
+	{
+		ft_atol(a[i]);
+		
+	}
+}

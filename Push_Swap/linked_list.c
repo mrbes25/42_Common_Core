@@ -8,6 +8,18 @@ struct Node* newNode(int data)
 	return node; // return the new node
 }
 
+struct Node* addNode(t_struct *node, int data)
+{
+	int	tmp;
+
+	tmp = 0;
+	tmp = node->prev;
+	node->prev = newNode(data);
+	node->prev->node->next = node;
+	node->prev->node->prev = tmp;
+
+}
+
 // pop function removes the top of a stack, frees it
 int pop(struct Stack* stack)
 {

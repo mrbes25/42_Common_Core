@@ -6,11 +6,11 @@
 #include "../ft_printf"
 
 // Define the node structure
-struct Node {
+typedef struct Node {
     int data;
     struct Node* next;
     struct Node* prev;
-};
+}t_struct *node;
 
 // Define the stack structure
 struct Stack {
