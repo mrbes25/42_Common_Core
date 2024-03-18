@@ -3,7 +3,7 @@ void ra(struct node** head) // moves the top to the bottom in stack A
 {
 	if (*head == NULL || (*head)->next == NULL) // checks if the stack is empty or has only one element
 		return;
-	*head = (*head)->next; // only moves entrypoint to the next node
+	*head = (*head)->next; / / only moves entrypoint to the next node
 }
 
 // rotate B (rb)
