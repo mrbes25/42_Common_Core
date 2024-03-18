@@ -1,22 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "ft_printf.h"
-#include "libft.h"
-#include "push_swap.h"
+#include "ft_printf/ft_printf.h"
+#include "libft/libft.h"
 
 struct node
 {
     int data;
     struct node *next;
     struct node *prev;
-}
+};
 
 struct node* addToEmpty(int data)
 {
     struct node* temp = malloc(sizeof(struct node));
-    if (tail == NULL)
+    if (temp == NULL)
     {
-        return (temp);
+        return (0);
     }
     temp->prev = temp;
     temp->data = data;
@@ -72,7 +71,6 @@ void printLinkedList(struct node* tail)
             ft_printf("%d ", ptr->data);
             ptr = ptr->next;
         }
-        temp = tail->next->data;
     }
 }
 
@@ -86,7 +84,7 @@ int main(int argc, char** argv)
     tail = NULL;
     while (argc >= i)
     {
-        long = ft_atol(argv[i]);
+        temp = ft_atol(argv[i]);
         addAtBegin(tail, temp);
     }
     printLinkedList(tail);

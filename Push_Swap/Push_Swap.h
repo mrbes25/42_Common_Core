@@ -2,8 +2,8 @@
 #define PUSH_SWAP_H
 
 #include <stdlib.h> // Include necessary headers
-#include "../libft.h"
-#include "../ft_printf"
+#include "libft/libft.h"
+#include "ft_printf/ft_printf.h"
 
 // Define the node structure
 typedef struct Node {
