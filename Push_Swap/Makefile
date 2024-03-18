@@ -4,7 +4,8 @@ include libft/Makefile
 SRCS =	building_CDLL.c \
 
 NAME = push_swap.a
-CFLAGS = -Wall -Werror -Wextra 
+CFLAGS = -Wall -Werror -Wextra
+
 OBJS = ${SRCS:.c=.o}
 LIBC = ar rcs
 CC = cc
@@ -15,7 +16,7 @@ RM = rm -f
 		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME}: ${OBJS}
-		${LIBC} ${NAME} ${OBJS}
+		${LIBC} ${NAME}
 
 all: 	${NAME}
 
