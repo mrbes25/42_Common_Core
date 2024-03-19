@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = $(shell find src/GNL src/ft_printf src/libft -name "*.c")
+SRCS = $(shell find src/ft_printf src/libft src/GNL -name "*.c")
 NAME = my_lib.a
 CFLAGS = -Wall -Werror -Wextra 
 OBJS = ${SRCS:.c=.o}

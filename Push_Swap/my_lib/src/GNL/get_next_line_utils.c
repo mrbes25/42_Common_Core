@@ -12,15 +12,6 @@
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
-{
-	int	l;
-
-	l = 0;
-	while (s && s[l])
-		l++;
-	return (l);
-}
 
 char	*ft_strndup(const char *src, size_t n)
 {
@@ -42,32 +33,4 @@ char	*ft_strndup(const char *src, size_t n)
 	}
 	dest[length] = '\0';
 	return (dest);
-}
-
-char	*ft_strdup(const char *s)
-{
-	char	*d;
-	int		i;
-
-	i = 0;
-	d = (char *)malloc((ft_strlen(s) + 1) * sizeof(char));
-	if (d == NULL)
-		return (NULL);
-	while (*s)
-		d[i++] = *s++;
-	d[i] = '\0';
-	return (d);
-}
-
-char	*ft_strchr(char *s, int c)
-{
-	if (!s)
-		return (NULL);
-	while (*s != (char)c)
-	{
-		if (*s == '\0')
-			return (NULL);
-		s++;
-	}
-	return ((char *)s);
 }
