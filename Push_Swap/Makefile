@@ -22,17 +22,15 @@ all: ${NAME}
 # This rule says that the executable depends on the object files and describes how to get from .o files to the executable
 ${NAME}: ${OBJS}
 	# Make in the libft directory
-	@${MAKE} -C libft
-	@${MAKE} -C ft_printf
+	@${MAKE} -C my_lib
 	# Compile the object files into the final executable
-	@${CC} ${CFLAGS} ${OBJS} libft/libft.a ft_printf/printf.a -o ${NAME}
+	@${CC} ${CFLAGS} ${OBJS} my_lib/my_lib.a -o ${NAME}
 
 
 # This rule removes the object files
 clean: 
 	# Make with the fclean target in the libft directory
-	@${MAKE} -C libft fclean
-	@${MAKE} -C ft_printf fclean
+	@${MAKE} -C my_lib fclean
 	# Remove the object files
 	@${RM} ${OBJS}
 

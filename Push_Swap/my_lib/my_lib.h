@@ -14,8 +14,8 @@
 #ifndef MY_LIB_H
 #define MY_LIB_H
 
-#include "libft/libft.h"
-#include "ft_printf/ft_printf.h"
-#include "GNL/get_next_line.h"
+#include "src/libft/libft.h"
+#include "src/ft_printf/ft_printf.h"
+#include "src/GNL/get_next_line.h"
 
 #endif

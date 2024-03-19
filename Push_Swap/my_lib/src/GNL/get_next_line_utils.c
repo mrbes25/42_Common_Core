@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschmid <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,33 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
-
-char	*ft_strjoin(char *s1, char const *s2)
-{
-	char	*new_str;
-	int		i;
-	int		b;
-
-	i = 0;
-	b = 0;
-	if (!s1)
-		s1 = "";
-	if (!s2)
-		s2 = "";
-	new_str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!new_str)
-		return (NULL);
-	while (s1[i])
-	{
-		new_str[i] = s1[i];
-		i++;
-	}
-	while (s2[b])
-		new_str[i++] = s2[b++];
-	new_str[i] = '\0';
-	return (new_str);
-}
+#include "get_next_line.h"
 
 size_t	ft_strlen(const char *s)
 {

@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = 			ft_atoi.c \
+SRCS = 			ft_atol.c \
 				ft_bzero.c \
 				ft_calloc.c \
 				ft_isalnum.c \
