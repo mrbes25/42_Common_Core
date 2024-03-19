@@ -1,31 +1,48 @@
-include ft_printf/Makefile
-include libft/Makefile
+# The name of the final executable
+NAME = push_swap
 
-SRCS =	building_CDLL.c \
+# Source files to be compiled, using wildcard to get all .c files in libft and ft_printf directories, and the building_CDLL.c file
+SRCS = building_CDLL.c
 
-NAME = push_swap.a
-CFLAGS = -Wall -Werror -Wextra
-
+# Object files to be generated from the source files
 OBJS = ${SRCS:.c=.o}
-LIBC = ar rcs
-CC = cc
 
-RM = rm -f
+# The C compiler to use
+CC = gcc
 
-.c.o:
-		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+# Compiler flags
+CFLAGS = -Wall -Wextra -Werror -Iincludes
 
+# Command to remove files
+RM = rm -rf
+
+# The default target - when you run 'make', 'all' is the target that gets executed
+all: ${NAME}
+
+# This rule says that the executable depends on the object files and describes how to get from .o files to the executable
 ${NAME}: ${OBJS}
-		${LIBC} ${NAME}
+	# Make in the libft directory
+	@${MAKE} -C libft
+	@${MAKE} -C ft_printf
+	# Compile the object files into the final executable
+	@${CC} ${CFLAGS} ${OBJS} libft/libft.a ft_printf/printf.a -o ${NAME}
 
-all: 	${NAME}
 
-clean:
-		${RM} ${OBJS}
+# This rule removes the object files
+clean: 
+	# Make with the fclean target in the libft directory
+	@${MAKE} -C libft fclean
+	@${MAKE} -C ft_printf fclean
+	# Remove the object files
+	@${RM} ${OBJS}
 
+# This rule removes the object files and the executable
 fclean: clean
-		${RM} ${NAME}
+	# Remove the executable
+	@${RM} ${NAME}
 
+# This rule forces a recompile by first cleaning and then building all
 re: fclean all
 
-.PHONY : all clean fclean re
+# These targets do not produce any files
+.PHONY: all clean fclean re

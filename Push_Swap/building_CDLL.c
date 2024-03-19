@@ -1,14 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "ft_printf/ft_printf.h"
-#include "libft/libft.h"
-
-struct node
-{
-    int data;
-    struct node *next;
-    struct node *prev;
-};
+#include "push_swap.h"
 
 struct node* addToEmpty(int data)
 {
@@ -86,6 +78,7 @@ int main(int argc, char** argv)
     {
         temp = ft_atol(argv[i]);
         addAtBegin(tail, temp);
+        i++;
     }
     printLinkedList(tail);
 
