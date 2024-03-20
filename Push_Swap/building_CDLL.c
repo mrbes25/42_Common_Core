@@ -33,3 +33,30 @@ struct node* addAtBegin(struct node* tail, int data)
         tail->next = newP;
         return (tail);
     }
+}
+
+void printList(struct nodeo* tail)
+{
+    if(tail == NULL)
+        write(1, "The list is empty\n", 18);
+    else
+    {
+        struct node* temp = tail->next;
+        while (temp != tail->next)
+        {
+            write (1, temp->data);
+            temp = temp->next;
+        }
+    }
+    write(1, "\n", 1);
+}
+int main()
+{
+    struct node* tail = NULL;
+    tail = addToEmpty(6);
+    tail = addAtBegin(tail, 4);
+    tail = addAtBegin(tail, 2);
+    tail = addAtBegin(tail, 8);
+    printList(tail);
+    return 0;
+}
