@@ -140,3 +140,6 @@ int main(int argc, char **argv)
     // Return an integer at the end of main function
     return 0;
 }
+
+// next steps will be to add movement functions one by one and test them.
+// then it will be ready for the algo part :D
