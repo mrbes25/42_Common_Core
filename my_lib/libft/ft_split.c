@@ -12,6 +12,63 @@
 
 #include "libft.h"
 
+/*size_t	ft_strlen(const char *s)
+{
+	int	l;
+
+	l = 0;
+	while (s[l] != '\0')
+		l++;
+	return (l);
+}
+
+char	*ft_strdup(const char *s)
+{
+	int		str_len;
+	char	*d;
+	int		i;
+
+	i = 0;
+	str_len = ft_strlen(s);
+	d = (char *)malloc((str_len + 1) * sizeof(char));
+	if (d == NULL)
+		return (NULL);
+	while (s[i])
+	{
+		d[i] = s[i];
+		i++;
+	}
+	d[i] = '\0';
+	return (d);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*ptr;
+	size_t	str_len;
+	size_t	i;
+
+	if (!s)
+		return (NULL);
+	str_len = ft_strlen(s);
+	if (start >= str_len)
+		return (ft_strdup(""));
+	str_len -= start;
+	if (len > str_len)
+		len = str_len;
+	ptr = (char *)malloc((len + 1) * sizeof(char));
+	if (ptr == NULL)
+		return (NULL);
+	i = 0;
+	while (i < len && s[start + i])
+	{
+		ptr[i] = s[start + i];
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
+}*/
+
 static void	free_str_array(char **strs)
 {
 	int	i;
@@ -90,3 +147,28 @@ char	**ft_split(char const *s, char c)
 	}
 	return (strs);
 }
+/*
+int	main(void)
+{
+	char	**strs;
+	char	*str = "           ";
+	char	c;
+	int		i1 = 0;
+	int		i2 = 0;
+	
+	c = ' ';
+	strs = ft_split(str, c);
+	if (!strs)
+		return (0);
+	while (strs[i1])
+	{
+		i2 = 0;
+		while(strs[i1][i2])
+		{
+			write (1, &strs[i1][i2], 1);
+			i2++;
+		}
+		i1++;
+	}
+	return (0);
+}*/

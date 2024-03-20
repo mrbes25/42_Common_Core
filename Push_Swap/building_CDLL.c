@@ -1,28 +1,135 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "push_swap.h"
 
-typedef struct Node
-{
-    int data;
-    struct Node *next;
-    struct Node *prev;
-} t_node;
-
+// Function to create a new node and add it to an empty list
 struct node* addToEmpty(int data)
 {
+    // Allocate memory for the new node
     struct node* temp = malloc(sizeof(struct node));
-    temp->prev = temp;
-    temp->data = data;
-    temp->next = temp;
-    return (temp);
+    if (temp == NULL)
+    {
+        // If malloc fails, return NULL
+        return (NULL);
+    }
+    // Initialize the new node
+    temp->prev = temp; // The previous node of the new node is itself
+    temp->data = data; // Set the data of the new node
+    temp->next = temp; // The next node of the new node is itself
+    return (temp); // Return the new node
 }
 
+// Function to add a new node at the beginning of the list
 struct node* addAtBegin(struct node* tail, int data)
 {
+    // Create a new node
     struct node* newP = addToEmpty(data);
-    if (tail == NULL)
+    if (newP == NULL)
+        // If malloc fails, return NULL
+        return (NULL);
+    else
     {
-        return (newP);
+        // Insert the new node at the beginning of the list
+        struct node* temp = tail->next; // The current head of the list
+        newP->prev = tail; // The previous node of the new node is the tail
+        newP->next = temp; // The next node of the new node is the old head
+        temp->prev = newP; // The previous node of the old head is the new node
+        tail->next = newP; // The next node of the tail is the new node
+        return (tail); // Return the tail of the list
+    }
+}
+
+// Function to add a new node at the end of the list
+struct node* addAtEnd(struct node* tail, int data)
+{
+    // Create a new node
+    struct node* newP = addToEmpty(data);
+    if(newP == NULL)
+        // If malloc fails, return NULL
+        return (NULL);
+    else
+    {
+        // Insert the new node at the end of the list
+        struct node* temp = tail->next; // The current head of the list
+        newP->next = temp; // The next node of the new node is the head
+        newP->prev = tail; // The previous node of the new node is the old tail
+        tail->next = newP; // The next node of the old tail is the new node
+        temp->prev = newP; // The previous node of the head is the new node
+        tail = newP; // The new tail of the list is the new node
+        return (tail); // Return the new tail of the list
+    }
+}
+void printLinkedList(struct node* tail)
+{
+    struct node* ptr;
+    if (tail == NULL)
+        ft_printf("List is empty");
+    else
+    {
+        ptr = tail->next;
+        do
+        {
+            ft_printf("%d ", ptr->data);
+            ptr = ptr->next;
+        } while (ptr != tail->next);
+    }
+}
+// Function to fill the linked list with command line arguments
+void fillLinkedList(int argc, char **argv, struct node **tail)
+{
+    // Declare variables for the converted argument and the loop counter
+    long temp;
+    int i = 1;
+
+    // Check if any arguments are provided
+    if (argc > 1)
+    {
+        // Iterate over each argument
+        while(i < argc)
+        {
+            // Convert the argument to a long
+            temp = ft_atol(argv[i]);
+
+            // If the list is empty, add the first node
+            if(*tail == NULL)
+                *tail = addToEmpty(temp);
+            else
+            {
+                // Otherwise, add the node at the end of the list
+                *tail = addAtEnd(*tail, temp);
+
+                // If adding the node failed, print an error message and return
+                if (*tail == NULL)
+                {
+                    printf("Failed to add element to the list\n");
+                    return;
+                }
+            }
+
+            // Increment the loop counter
+            i++;
+        }
+    }
+}
+int ft_arrlen(char **arr)
+{
+    int len = 0;
+    while (arr[len] != NULL)
+        len++;
+    return len;
+}
+
+// Main function
+// Main function
+int main(int argc, char **argv)
+{
+    // Declare a pointer to the tail of the list
+    struct node* tail = NULL;
+    if(argc == 1)
+    {
+        argv = ft_split(argv[1], ' ');
+        argc = ft_arrlen(argv);
+        fillLinkedList(argc, argv, &tail);
     }
     else
     {
@@ -33,30 +140,3 @@ struct node* addAtBegin(struct node* tail, int data)
         tail->next = newP;
         return (tail);
     }
-}
-
-void printList(struct nodeo* tail)
-{
-    if(tail == NULL)
-        write(1, "The list is empty\n", 18);
-    else
-    {
-        struct node* temp = tail->next;
-        while (temp != tail->next)
-        {
-            write (1, temp->data);
-            temp = temp->next;
-        }
-    }
-    write(1, "\n", 1);
-}
-int main()
-{
-    struct node* tail = NULL;
-    tail = addToEmpty(6);
-    tail = addAtBegin(tail, 4);
-    tail = addAtBegin(tail, 2);
-    tail = addAtBegin(tail, 8);
-    printList(tail);
-    return 0;
-}
