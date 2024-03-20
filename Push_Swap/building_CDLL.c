@@ -111,14 +111,31 @@ void fillLinkedList(int argc, char **argv, struct node **tail)
         }
     }
 }
+int ft_arrlen(char **arr)
+{
+    int len = 0;
+    while (arr[len] != NULL)
+        len++;
+    return len;
+}
 
+// Main function
 // Main function
 int main(int argc, char **argv)
 {
     // Declare a pointer to the tail of the list
     struct node* tail = NULL;
-    // Fill the linked list with command line arguments
-    fillLinkedList(argc, argv, &tail);
+    if(argc == 1)
+    {
+        argv = ft_split(argv[1], ' ');
+        argc = ft_arrlen(argv);
+        fillLinkedList(argc, argv, &tail);
+    }
+    else
+    {
+        // Fill the linked list with command line arguments
+        fillLinkedList(argc, argv, &tail);
+    }
 
     // Print the linked list
     printLinkedList(tail);
