@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   ft_splitLL.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschmid <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,63 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/*size_t	ft_strlen(const char *s)
-{
-	int	l;
-
-	l = 0;
-	while (s[l] != '\0')
-		l++;
-	return (l);
-}
-
-char	*ft_strdup(const char *s)
-{
-	int		str_len;
-	char	*d;
-	int		i;
-
-	i = 0;
-	str_len = ft_strlen(s);
-	d = (char *)malloc((str_len + 1) * sizeof(char));
-	if (d == NULL)
-		return (NULL);
-	while (s[i])
-	{
-		d[i] = s[i];
-		i++;
-	}
-	d[i] = '\0';
-	return (d);
-}
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*ptr;
-	size_t	str_len;
-	size_t	i;
-
-	if (!s)
-		return (NULL);
-	str_len = ft_strlen(s);
-	if (start >= str_len)
-		return (ft_strdup(""));
-	str_len -= start;
-	if (len > str_len)
-		len = str_len;
-	ptr = (char *)malloc((len + 1) * sizeof(char));
-	if (ptr == NULL)
-		return (NULL);
-	i = 0;
-	while (i < len && s[start + i])
-	{
-		ptr[i] = s[start + i];
-		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
-}*/
 
 static void	free_str_array(char **strs)
 {
@@ -128,24 +71,34 @@ static void	fill_strs(char const *s, char c, char **strs, int *error)
 	strs[i2] = NULL;
 }
 
-char	**ft_split(char const *s, char c)
+void ft_splitLL(char const *s, char c, struct node **tail)
 {
-	char	**strs;
-	int		error;
-
-	error = 0;
-	if (!s)
-		return (NULL);
-	strs = (char **)malloc((count_words(s, c) + 1) * sizeof(char *));
-	if (!strs)
-		return (NULL);
-	fill_strs(s, c, strs, &error);
-	if (error)
+	char *word;
+	long temp;
+	while (*s)
 	{
-		free_str_array(strs);
-		return (NULL);
+		// Skip the delimiter
+		while (*s == c)
+			s++;
+		// If we're not at the end of the string
+		if (*s)
+		{
+			// Allocate memory for the word and copy it from the string
+			word = malloc_word(s, c);
+			// Convert the word to a long integer
+			temp = ft_atol(word);
+			// Free the memory allocated for the word
+			free(word);
+			// Add the integer to the linked list
+			if(*tail == NULL)
+				*tail = addToEmpty(temp);
+			else
+				*tail = addAtEnd(*tail, temp);
+			// Skip the word
+			while (*s && *s != c)
+				s++;
+		}
 	}
-	return (strs);
 }
 /*
 int	main(void)

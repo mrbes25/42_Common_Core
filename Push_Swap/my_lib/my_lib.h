@@ -17,5 +17,6 @@
 #include "src/libft/libft.h"
 #include "src/ft_printf/ft_printf.h"
 #include "src/GNL/get_next_line.h"
+#include "../push_swap.h"
 
 #endif

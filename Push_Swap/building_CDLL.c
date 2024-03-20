@@ -74,44 +74,57 @@ void printLinkedList(struct node* tail)
         } while (ptr != tail->next);
     }
 }
-int main(void)
+// Function to fill the linked list with command line arguments
+void fillLinkedList(int argc, char **argv, struct node **tail)
 {
-    // Create an empty list
-    // 'tail' is a pointer to the last node in the list
+    // Declare variables for the converted argument and the loop counter
+    long temp;
+    int i = 1;
+
+    // Check if any arguments are provided
+    if (argc > 1)
+    {
+        // Iterate over each argument
+        while(i < argc)
+        {
+            // Convert the argument to a long
+            temp = ft_atol(argv[i]);
+
+            // If the list is empty, add the first node
+            if(*tail == NULL)
+                *tail = addToEmpty(temp);
+            else
+            {
+                // Otherwise, add the node at the end of the list
+                *tail = addAtEnd(*tail, temp);
+
+                // If adding the node failed, print an error message and return
+                if (*tail == NULL)
+                {
+                    printf("Failed to add element to the list\n");
+                    return;
+                }
+            }
+
+            // Increment the loop counter
+            i++;
+        }
+    }
+}
+
+// Main function
+int main(int argc, char **argv)
+{
+    // Declare a pointer to the tail of the list
     struct node* tail = NULL;
-
-    // Add the first element to the list
-    // 'addToEmpty' creates a new node, sets its data to 1, and returns a pointer to it
-    tail = addToEmpty(1);
-    // If 'addToEmpty' returns NULL, it means that memory allocation failed
-    if (tail == NULL)
+    if (argc == 1)
     {
-        printf("Failed to add element to the list\n");
-        return 1;
+        ft_splitLL(argv[0], ' ', &tail);
     }
+    // Fill the linked list with command line arguments
+    fillLinkedList(argc, argv, &tail);
 
-    // Add a second element to the end of the list
-    // 'addAtEnd' creates a new node, sets its data to 2, adds it to the end of the list, and returns a pointer to it
-    tail = addAtEnd(tail, 2);
-    // If 'addAtEnd' returns NULL, it means that memory allocation failed
-    if (tail == NULL)
-    {
-        printf("Failed to add element to the list\n");
-        return 1;
-    }
-
-    // Add a third element to the end of the list
-    // 'addAtEnd' creates a new node, sets its data to 3, adds it to the end of the list, and returns a pointer to it
-    tail = addAtEnd(tail, 3);
-    // If 'addAtEnd' returns NULL, it means that memory allocation failed
-    if (tail == NULL)
-    {
-        printf("Failed to add element to the list\n");
-        return 1;
-    }
-
-    // Print the list
-    // 'printLinkedList' prints the data of each node in the list, starting from the head and ending at the tail
+    // Print the linked list
     printLinkedList(tail);
 
     // Return 0 to indicate that the program finished successfully
