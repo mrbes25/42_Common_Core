@@ -5,13 +5,21 @@
 #                                                     +:+ +:+         +:+      #
 #    By: bschmid <marvin@42lausanne.ch>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/03/19 11:12:49 by bschmid           #+#    #+#              #
-#    Updated: 2024/03/19 11:12:52 by bschmid          ###   ########.fr        #
+#    Created: 2023/11/13 13:37:36 by bschmid           #+#    #+#              #
+#    Updated: 2023/11/13 13:37:43 by bschmid          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = $(shell find src/ft_printf src/libft src/GNL -name "*.c")
-NAME = my_lib.a
+SRCS =	ft_printf.c \
+		ft_putchar.c \
+		ft_puthex_lower.c \
+		ft_puthex_upper.c \
+		ft_putnbr.c \
+		ft_putpointer.c \
+		ft_putstr.c \
+		ft_set_type.c \
+
+NAME = libftprintf.a
 CFLAGS = -Wall -Werror -Wextra 
 OBJS = ${SRCS:.c=.o}
 LIBC = ar rcs

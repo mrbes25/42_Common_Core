@@ -71,57 +71,22 @@ static void	fill_strs(char const *s, char c, char **strs, int *error)
 	strs[i2] = NULL;
 }
 
-void ft_splitLL(char const *s, char c, struct node **tail)
-{
-	char *word;
-	long temp;
-	while (*s)
-	{
-		// Skip the delimiter
-		while (*s == c)
-			s++;
-		// If we're not at the end of the string
-		if (*s)
-		{
-			// Allocate memory for the word and copy it from the string
-			word = malloc_word(s, c);
-			// Convert the word to a long integer
-			temp = ft_atol(word);
-			// Free the memory allocated for the word
-			free(word);
-			// Add the integer to the linked list
-			if(*tail == NULL)
-				*tail = addToEmpty(temp);
-			else
-				*tail = addAtEnd(*tail, temp);
-			// Skip the word
-			while (*s && *s != c)
-				s++;
-		}
-	}
-}
-/*
-int	main(void)
+char	**ft_split(char const *s, char c)
 {
 	char	**strs;
-	char	*str = "           ";
-	char	c;
-	int		i1 = 0;
-	int		i2 = 0;
-	
-	c = ' ';
-	strs = ft_split(str, c);
+	int		error;
+
+	error = 0;
+	if (!s)
+		return (NULL);
+	strs = (char **)malloc((count_words(s, c) + 1) * sizeof(char *));
 	if (!strs)
-		return (0);
-	while (strs[i1])
+		return (NULL);
+	fill_strs(s, c, strs, &error);
+	if (error)
 	{
-		i2 = 0;
-		while(strs[i1][i2])
-		{
-			write (1, &strs[i1][i2], 1);
-			i2++;
-		}
-		i1++;
+		free_str_array(strs);
+		return (NULL);
 	}
-	return (0);
-}*/
+	return (strs);
+}

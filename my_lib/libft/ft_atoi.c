@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschmid <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,11 +12,11 @@
 
 #include "libft.h"
 
-long	ft_atol(const char *str)
+int	ft_atoi(const char *str)
 {
-	int		i;
-	int		pos;
-	long	number;
+	int	i;
+	int	pos;
+	int	number;
 
 	i = 0;
 	pos = 1;

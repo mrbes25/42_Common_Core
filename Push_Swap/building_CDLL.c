@@ -117,10 +117,6 @@ int main(int argc, char **argv)
 {
     // Declare a pointer to the tail of the list
     struct node* tail = NULL;
-    if (argc == 1)
-    {
-        ft_splitLL(argv[0], ' ', &tail);
-    }
     // Fill the linked list with command line arguments
     fillLinkedList(argc, argv, &tail);
 
