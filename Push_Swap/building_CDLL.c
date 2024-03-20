@@ -121,6 +121,7 @@ int ft_arrlen(char **arr)
 
 // Main function
 // Main function
+// Main function
 int main(int argc, char **argv)
 {
     // Declare a pointer to the tail of the list
@@ -132,11 +133,8 @@ int main(int argc, char **argv)
         fillLinkedList(argc, argv, &tail);
     }
     else
-    {
-        struct node* temp = tail->next;
-        newP->prev = tail;
-        newP->next = temp;
-        temp->prev = newP;
-        tail->next = newP;
-        return (tail);
-    }
+        fillLinkedList(argc, argv, &tail);
+    printLinkedList(tail);
+    // Return an integer at the end of main function
+    return 0;
+}
