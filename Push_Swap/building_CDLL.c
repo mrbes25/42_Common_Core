@@ -75,15 +75,17 @@ void printLinkedList(struct node* tail)
     }
 }
 // Function to fill the linked list with command line arguments
-void fillLinkedList(int argc, char **argv, struct node **tail)
+void fillLinkedList(int argc, char **argv, struct node **tail, int true)
 {
     // Declare variables for the converted argument and the loop counter
     long temp;
-    int i = 1;
+    int i = 0;
 
     // Check if any arguments are provided
     if (argc > 1)
     {
+        if(true == 1)
+            i++;
         // Iterate over each argument
         while(i < argc)
         {
@@ -126,14 +128,14 @@ int main(int argc, char **argv)
 {
     // Declare a pointer to the tail of the list
     struct node* tail = NULL;
-    if(argc == 1)
+    if(argc == 2)
     {
         argv = ft_split(argv[1], ' ');
         argc = ft_arrlen(argv);
-        fillLinkedList(argc, argv, &tail);
+        fillLinkedList(argc, argv, &tail, 0);
     }
     else
-        fillLinkedList(argc, argv, &tail);
+        fillLinkedList(argc, argv, &tail, 1);
     printLinkedList(tail);
     // Return an integer at the end of main function
     return 0;
